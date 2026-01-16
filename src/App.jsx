@@ -1,15 +1,15 @@
 
 import { useState } from 'react'
 import './App.css'
-// import Header from './layout/Header'
 import Footer from './layout/Footer'
 import AllRoute from './AllRoute'
+import Navbar from './layout/Navbar'
 
 function App() {
 
   return (
     <>
-      {/* <Header /> */}
+      <Navbar/>
       <AllRoute/>
       <Footer />
     </>
