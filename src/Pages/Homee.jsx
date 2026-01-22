@@ -1,20 +1,12 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import banner1 from "../assets/images/bannerBg.jpg";
 import banner2 from "../assets/images/bannerBg1.jpg";
 import banner3 from "../assets/images/bannerBg2.jpg";
-<<<<<<< HEAD
 import whychoose from "../assets/images/whychoose.jpg";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-
-=======
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
->>>>>>> 75ac3adb8d02fc00963b69ccffb2d64cbd115f4e
-
 
 /* ---------- Custom Arrows ---------- */
 const PrevArrow = ({ onClick }) => (
@@ -44,12 +36,11 @@ const NextArrow = ({ onClick }) => (
 );
 
 function Homee() {
-  const [prevIndex, setPrevIndex] = useState(0);
- const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const triggersRef = useRef([]);
   const lockRef = useRef(false);
 
-   useEffect(() => {
+  useEffect(() => {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -81,12 +72,6 @@ function Homee() {
 }, [activeIndex]);
 
 
-  useEffect(() => {
-  if (activeIndex !== prevIndex) {
-    setPrevIndex(activeIndex);
-  }
-}, [activeIndex]);
-
   const settings = {
     dots: false,
     arrows: true,
@@ -101,10 +86,9 @@ function Homee() {
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
     beforeChange: () => {
-      const images = document.querySelectorAll(".hero-img");
-      images.forEach((img) => {
+      document.querySelectorAll(".hero-img").forEach((img) => {
         img.style.animation = "none";
-        img.offsetHeight; // force reflow
+        img.offsetHeight;
         img.style.animation = "";
       });
     },
@@ -127,126 +111,55 @@ function Homee() {
       desc: "Every sip tells a story of quality roasting, expert brewing, and our love for creating coffee moments worth remembering.",
     },
   ];
-<<<<<<< HEAD
 
-const items = [
-  {
-    title: "The Coffee Everyone Talks About",
-    desc1: "Slow-brewed with patience and precision, delivering a bold aroma.",
-    desc2: "Made for mornings, meetings, and moments worth savoring.",
-    img: "https://images.unsplash.com/photo-1511920170033-f8396924c348",
-  },
-  {
-    title: "Our Most Ordered Dessert",
-    desc1: "Freshly baked with soft textures and balanced sweetness.",
-    desc2: "The dessert people come back for again and again.",
-    img: "https://images.unsplash.com/photo-1551024601-bec78aea704b",
-  },
-  {
-    title: "The Cafe Special Savory",
-    desc1: "Warm, comforting, and crafted to pair perfectly with coffee.",
-    desc2: "A dish that turns first-time visitors into regulars.",
-    img: whychoose, // your image
-  },
-];
-=======
->>>>>>> 75ac3adb8d02fc00963b69ccffb2d64cbd115f4e
-
-
-
- 
-
+  const items = [
+    {
+      title: "The Coffee Everyone Talks About",
+      desc1: "Slow-brewed with patience and precision, delivering a bold aroma.",
+      desc2: "Made for mornings, meetings, and moments worth savoring.",
+      img: "https://images.unsplash.com/photo-1511920170033-f8396924c348",
+    },
+    {
+      title: "Our Most Ordered Dessert",
+      desc1: "Freshly baked with soft textures and balanced sweetness.",
+      desc2: "The dessert people come back for again and again.",
+      img: "https://images.unsplash.com/photo-1551024601-bec78aea704b",
+    },
+    {
+      title: "The Cafe Special Savory",
+      desc1: "Warm, comforting, and crafted to pair perfectly with coffee.",
+      desc2: "A dish that turns first-time visitors into regulars.",
+      img: whychoose,
+    },
+  ];
 
   return (
-<<<<<<< HEAD
     <>
+      {/* HERO SLIDER */}
       <section className="relative overflow-hidden">
         <Slider {...settings}>
           {slides.map((slide, index) => (
-            <div key={index} className="relative h-[100vh]">
-              {/* Image */}
+            <div key={index} className="relative h-screen">
               <img
                 src={slide.img}
                 alt=""
-                className="w-full h-full object-cover hero-img"
+                className="hero-img w-full h-full object-cover"
               />
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/45 h-full]"></div>
+              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10"></div>
 
-              {/* Text */}
-              <div className="absolute inset-0 top-30 flex items-center">
+              <div className="absolute inset-0 flex items-center">
                 <div className="max-w-6xl mx-auto px-6 text-center">
-                  <div className="max-w-3xl hero-text ">
-                    <h1 className="text-[38px] md:text-[40px] font-serif font-medium 
-text-[#E7C27D] mb-4 leading-tight font-heading">
-
-                      {slide.title}
-                    </h1>
-                    <p className="text-[16px] md:text-[18px] font-body text-white mb-8 leading-relaxed">
-                      {slide.desc}
-                    </p>
-
-                    <button
-                      className="border border-white text-white px-8 py-3
-  rounded-3xl uppercase tracking-widest text-sm
-  hover:bg-white hover:text-[#3B2A22]
-  transition-all duration-300"
-                    >
-                      Explore Menu
-                    </button>
-
-                  </div>
-=======
-    <section className="relative overflow-hidden">
-      <Slider {...settings}>
-        {slides.map((slide, index) => (
-          <div key={index} className="relative h-screen">
-            {/* Image */}
-            <img
-              src={slide.img}
-              alt=""
-              className="hero-img w-full h-full object-cover"
-            />
-
-            {/* Overlay layers for readability */}
-            <div className="absolute inset-0 bg-black/40"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10"></div>
-
-            {/* Content */}
-            <div className="absolute inset-0 flex items-center mt-15">
-              <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center ">
-                <div className="max-w-3xl mx-auto">
-                  <h1
-                    className="text-[26px] sm:text-[32px] md:text-[40px]
-                    font-serif font-medium text-[#E7C27D]
-                    mb-4 leading-tight"
-                  >
+                  <h1 className="text-[26px] sm:text-[32px] md:text-[40px] font-serif font-medium text-[#E7C27D] mb-4">
                     {slide.title}
                   </h1>
-
-                  <p
-                    className="text-[14px] sm:text-[16px] md:text-[18px]
-                    text-white mb-8 leading-relaxed"
-                  >
+                  <p className="text-white text-lg mb-8 max-w-2xl mx-auto">
                     {slide.desc}
                   </p>
-
-                  <button
-                    className="relative overflow-hidden
-                    border border-white text-white
-                    px-8 py-3 rounded-3xl
-                    uppercase tracking-widest text-sm
-                    transition-all duration-300
-                    before:absolute before:inset-0
-                    before:bg-white before:translate-y-full
-                    before:transition-transform before:duration-300
-                    hover:before:translate-y-0
-                    hover:text-[#3B2A22]"
-                  >
-                    <span className="relative z-10">Explore Menu</span>
+                  <button className="border border-white text-white px-8 py-3 rounded-3xl uppercase tracking-widest text-sm hover:bg-white hover:text-[#3B2A22] transition-all">
+                    Explore Menu
                   </button>
->>>>>>> 75ac3adb8d02fc00963b69ccffb2d64cbd115f4e
                 </div>
               </div>
             </div>
@@ -254,7 +167,8 @@ text-[#E7C27D] mb-4 leading-tight font-heading">
         </Slider>
       </section>
 
- <section className="bg-[#140A06] text-[#F4EDE6]">
+      {/* SCROLL SECTION */}
+     <section className="bg-[#140A06] text-[#F4EDE6]">
 
       {/* HEADING (NORMAL SCROLL) */}
       <div className="pt-15 px-6">
@@ -262,7 +176,7 @@ text-[#E7C27D] mb-4 leading-tight font-heading">
           <p className="text-[#C78665] tracking-[0.4em] uppercase text-sm">
             Not Our Menu — Our Identity
           </p>
-          <h2 className="mt-6 text-5xl md:text-[50px] font-serif">
+          <h2 className="mt-6 text-5xl md:text-6xl font-serif">
             These Dishes <br /> Built Our Cafe
           </h2>
           <p className="mt-6 text-lg text-[#D6C7BC]">
@@ -326,12 +240,7 @@ text-[#E7C27D] mb-4 leading-tight font-heading">
         ))}
       </div>
     </section>
-
-
-
-
     </>
-
   );
 }
 
