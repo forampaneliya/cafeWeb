@@ -4,7 +4,7 @@ import banner1 from "../assets/images/bannerBg.jpg";
 import banner2 from "../assets/images/bannerBg1.jpg";
 import banner3 from "../assets/images/bannerBg2.jpg";
 import whychoose from "../assets/images/whychoose.jpg";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronRightIcon } from "lucide-react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -41,6 +41,29 @@ function Homee() {
   const [activeIndex, setActiveIndex] = useState(0);
   const triggersRef = useRef([]);
   const lockRef = useRef(false);
+   const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
   const observer = new IntersectionObserver(
@@ -168,6 +191,125 @@ function Homee() {
           ))}
         </Slider>
       </section>
+
+
+      <section className="bg-[#140A06] text-[#F4EDE6] py-28 px-6">
+  <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+
+    {/* LEFT IMAGE SECTION */}
+    <div className="relative flex justify-center">
+      {/* Oval Image */}
+      <div className="w-[320px] h-[420px] md:w-[380px] md:h-[500px] rounded-[180px] overflow-hidden shadow-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5"
+          alt="Cafe Interior"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Experience Badge */}
+      <div className="absolute top-10 -right-6 bg-[#C78665] text-[#140A06] px-6 py-4 rounded-2xl shadow-xl text-center">
+        <p className="text-2xl font-semibold">Since 2025</p>
+        <p className="text-sm tracking-wide">Crafting Coffee & Moments</p>
+      </div>
+
+      {/* Small Avatar */}
+      <div className="absolute bottom-10 left-15 w-25 h-25 rounded-full overflow-hidden border-2 border-[#C78665]">
+        <img
+          src="https://images.unsplash.com/photo-1527980965255-d3b416303d12"
+          alt="Our Barista"
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+
+    {/* RIGHT CONTENT */}
+    <div>
+      <p className="text-[#C78665] uppercase tracking-[0.3em] text-sm mb-4">
+        About Our Cafe
+      </p>
+
+      <h2 className="text-4xl md:text-5xl font-serif leading-tight mb-6">
+        Crafted With Passion, <br /> Served With Heart
+      </h2>
+
+      <p className="text-[#D6C7BC] text-lg mb-8 max-w-xl">
+        Our cafe is more than just a place for coffee — it’s a space where
+        flavors, conversations, and comfort come together. Every cup and
+        every dish is prepared with care, quality ingredients, and a love
+        for creating memorable moments.
+      </p>
+
+      {/* Bullet Points */}
+      <ul className="space-y-4 mb-10">
+        <li className="flex items-center gap-3">
+         <ChevronRightIcon className="w-4 h-4 text-[#C78665]" />
+
+          Freshly Brewed Coffee & Handcrafted Beverages
+        </li>
+        <li className="flex items-center gap-3">
+          <ChevronRightIcon className="w-4 h-4 text-[#C78665]" />
+
+          House-Made Desserts & Comfort Savories
+        </li>
+        <li className="flex items-center gap-3">
+          <ChevronRightIcon className="w-4 h-4 text-[#C78665]" />
+
+          Warm Ambience for Work, Friends & Relaxation
+        </li>
+      </ul>
+
+      {/* Buttons */}
+    <div className="flex gap-4">
+
+  {/* Explore Menu */}
+  <button
+    className="relative overflow-hidden px-8 py-3 rounded-full font-medium
+      bg-[#C78665] text-white group"
+  >
+    {/* Hover Layer */}
+    <span
+      className="absolute inset-0 bg-white translate-y-full
+        group-hover:translate-y-0 transition-transform duration-300 ease-out"
+    ></span>
+
+    {/* Text */}
+    <span
+      className="relative z-10 group-hover:text-[#C78665]
+        transition-colors duration-300"
+    >
+      Explore Menu
+    </span>
+  </button>
+
+  {/* Visit Our Cafe */}
+  <button
+    className="relative overflow-hidden px-8 py-3 rounded-full font-medium
+      border border-[#D6C7BC] text-[#F4EDE6] group"
+  >
+    {/* Hover Layer */}
+    <span
+      className="absolute inset-0 bg-white translate-y-full
+        group-hover:translate-y-0 transition-transform duration-300 ease-out"
+    ></span>
+
+    {/* Text */}
+    <span
+      className="relative z-10 group-hover:text-[#C78665]
+        transition-colors duration-300"
+    >
+      Visit Our Cafe
+    </span>
+  </button>
+
+</div>
+
+
+    </div>
+
+  </div>
+</section>
+
 
       {/* SCROLL SECTION */}
      <section className="bg-[#140A06] text-[#F4EDE6]">
