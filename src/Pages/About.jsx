@@ -1,5 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Coffee, Heart, Users, Award, ChevronDown, Leaf, Clock, Star } from 'lucide-react';
+import image1 from "../assets/images/12.jpg"
+import image2 from "../assets/images/10.jpg"
+import image3 from "../assets/images/15.jpg"
+import image4 from "../assets/images/26.jpg"
+import image5 from "../assets/images/37.jpg"
+import image6 from "../assets/images/43.jpg"
+import image7 from "../assets/images/44.jpg"
+import image8 from "../assets/images/51.jpg"
+import image9 from "../assets/images/35.jpg"
+import image10 from "../assets/images/36.jpg"
+import image11 from "../assets/images/45.jpg"
+import image12 from "../assets/images/48.jpg"
+import image13 from "../assets/images/40.jpg"
+import image14 from "../assets/images/41.jpg"
+import image15 from "../assets/images/49.jpg"
+import image16 from "../assets/images/55.jpg"
+
+
+
+
+
+
+
 
 // Mock images - replace with your actual images
 const aboutImages = [
@@ -10,28 +33,28 @@ const aboutImages = [
 ];
 const foodCategories = {
   snacks: [
-    "https://picsum.photos/300/200?random=101",
-    "https://picsum.photos/300/200?random=102",
-    "https://picsum.photos/300/200?random=103",
-    "https://picsum.photos/300/200?random=104",
+    image1,
+    image2,
+    image3,
+    image4
   ],
   drinks: [
-    "https://picsum.photos/300/200?random=201",
-    "https://picsum.photos/300/200?random=202",
-    "https://picsum.photos/300/200?random=203",
-    "https://picsum.photos/300/200?random=204",
+   image9,
+   image10,
+   image11,
+   image12
   ],
   coffee: [
-    "https://picsum.photos/300/200?random=301",
-    "https://picsum.photos/300/200?random=302",
-    "https://picsum.photos/300/200?random=303",
-    "https://picsum.photos/300/200?random=304",
+   image5,
+   image6,
+   image7,
+   image8
   ],
   dessert: [
-    "https://picsum.photos/300/200?random=401",
-    "https://picsum.photos/300/200?random=402",
-    "https://picsum.photos/300/200?random=403",
-    "https://picsum.photos/300/200?random=404",
+   image13,
+   image14,
+   image15,
+   image16
   ],
 };
 class VerticalLoopAnimation {
