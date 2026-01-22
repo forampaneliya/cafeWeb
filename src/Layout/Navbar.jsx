@@ -112,8 +112,24 @@ function Navbar() {
             </button>
           </div>
 
-          <h2 className="text-xl font-bold mb-6 border-b border-gray-700 pb-2">
-            Contact Us
+          {/* Sidebar Menu - Only visible on mobile/tablet */}
+          <nav className="flex flex-col mb-8 lg:hidden">
+            {["HOME", "ABOUT US", "MENU", "GALLERY", "CONTACT", "ORDER NOW"].map((item, index) => (
+              <a
+                key={item}
+                href="#"
+                className={`text-white text-sm font-medium py-4 border-b border-gray-700 hover:text-[#FCE779] transition-colors ${
+                  index === 0 ? "border-t border-gray-700" : ""
+                }`}
+              >
+                {index === 0 && <span className="mr-2">◇</span>}
+                {item}
+              </a>
+            ))}
+          </nav>
+
+          <h2 className="text-xl font-bold mb-6 border-b border-gray-700 pb-2 lg:text-left text-center lg:border-b-0">
+            Contact Us{!scrolled && <span className="lg:inline hidden">:</span>}<span className="lg:hidden">:</span>
           </h2>
 
           <div className="space-y-5 text-sm">
