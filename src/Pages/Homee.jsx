@@ -5,21 +5,30 @@ import banner2 from "../assets/images/bannerBg1.jpg";
 import banner3 from "../assets/images/bannerBg2.jpg";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+/* ---- Arrows ---- */
 const PrevArrow = ({ onClick }) => (
   <button
     onClick={onClick}
-    className="absolute left-6 top-1/2 -translate-y-1/2 z-20 bg-[#5a3e2b]/80 hover:bg-[#3e2a1d] text-amber-200 p-3 rounded-full transition"
+    className="absolute left-8 top-1/2 -translate-y-1/2 z-20
+    w-12 h-12 rounded-full border border-white/60
+    flex items-center justify-center
+    text-white cursor-pointer
+    transition-all duration-300"
   >
-    <FaChevronLeft />
+    <FaChevronLeft size={16} />
   </button>
 );
 
 const NextArrow = ({ onClick }) => (
   <button
     onClick={onClick}
-    className="absolute right-6 top-1/2 -translate-y-1/2 z-20 bg-[#5a3e2b]/80 hover:bg-[#3e2a1d] text-amber-200 p-3 rounded-full transition"
+    className="absolute right-8 top-1/2 -translate-y-1/2 z-20
+    w-12 h-12 rounded-full border border-white/60
+    flex items-center justify-center
+    text-white cursor-pointer
+    transition-all duration-300"
   >
-    <FaChevronRight />
+    <FaChevronRight size={16} />
   </button>
 );
 
@@ -28,66 +37,78 @@ function Homee() {
     dots: false,
     arrows: true,
     infinite: true,
-    speed: 800,
+    speed: 1200,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 3500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    fade: true,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
   };
 
-  const slides = [
-    {
-      img: banner1,
-      title: "Freshly Brewed Coffee",
-      desc: "Experience rich aroma & handcrafted flavors",
-    },
-    {
-      img: banner2,
-      title: "Warm Cafe Moments",
-      desc: "Relax, sip, and enjoy every moment",
-    },
-    {
-      img: banner3,
-      title: "Taste the Perfection",
-      desc: "Where coffee meets comfort",
-    },
-  ];
+ const slides = [
+  {
+    img: banner1,
+    title: "Handcrafted Coffee, Brewed to Perfection",
+    desc: "We carefully select premium beans and brew every cup with passion, delivering rich aroma, smooth flavor, and an unforgettable coffee experience.",
+  },
+  {
+    img: banner2,
+    title: "A Cozy Space to Relax, Sip & Connect",
+    desc: "Step into a warm and welcoming atmosphere where great coffee, calm moments, and meaningful conversations come together beautifully.",
+  },
+  {
+    img: banner3,
+    title: "From Fresh Beans to Your Perfect Cup",
+    desc: "Every sip tells a story of quality roasting, expert brewing, and our love for creating coffee moments worth remembering.",
+  },
+];
 
   return (
-    <div className="relative">
+    <section className="relative overflow-hidden">
       <Slider {...settings}>
         {slides.map((slide, index) => (
-          <div key={index} className="relative h-[90vh]">
+          <div key={index} className="relative h-[100vh]">
             {/* Image */}
             <img
               src={slide.img}
-              alt="Cafe Banner"
-              className="w-full h-full object-cover"
+              alt=""
+              className="w-full h-full object-cover hero-img"
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#2b1b12]/80 via-[#3e2a1d]/60 to-transparent"></div>
+            <div className="absolute inset-0 bg-black/45"></div>
 
-            {/* Text Content */}
-            <div className="absolute inset-0 flex items-center">
-              <div className="max-w-7xl mx-auto px-6">
-                <h1 className="text-4xl md:text-6xl font-serif text-amber-200 mb-4">
-                  {slide.title}
-                </h1>
-                <p className="text-lg md:text-xl text-amber-100 max-w-xl mb-6">
-                  {slide.desc}
-                </p>
-                <button className="bg-[#5a3e2b] hover:bg-[#3e2a1d] text-amber-200 px-6 py-3 rounded-full tracking-wide transition">
-                  Explore Menu
-                </button>
+            {/* Text */}
+            <div className="absolute inset-0 top-30 flex items-center">
+              <div className="max-w-6xl mx-auto px-6 text-center">
+                <div className="max-w-3xl hero-text ">
+                  <h1 className="text-[38px] md:text-[40px] font-serif font-medium 
+text-[#E7C27D] mb-4 leading-tight font-heading">
+
+                    {slide.title}
+                  </h1>
+                  <p className="text-[16px] md:text-[18px] font-body text-white mb-8 leading-relaxed">
+                    {slide.desc}
+                  </p>
+
+                 <button
+  className="border border-white text-white px-8 py-3
+  rounded-3xl uppercase tracking-widest text-sm
+  hover:bg-white hover:text-[#3B2A22]
+  transition-all duration-300"
+>
+  Explore Menu
+</button>
+
+                </div>
               </div>
             </div>
           </div>
         ))}
       </Slider>
-    </div>
+    </section>
   );
 }
 

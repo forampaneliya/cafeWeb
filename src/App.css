@@ -1,0 +1,31 @@
+/* Image zoom in / out */
+.hero-img {
+  transform: scale(1.15);
+  transition: transform 6s ease;
+}
+
+.slick-active .hero-img {
+  transform: scale(1);
+}
+
+/* Text animation */
+.hero-text {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.2s ease;
+}
+
+.slick-active .hero-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Cafe Hero Fonts */
+.font-heading {
+  font-family: "Playfair Display", serif;
+}
+
+.font-body {
+  font-family: "Poppins", sans-serif;
+}
+
