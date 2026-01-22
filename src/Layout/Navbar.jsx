@@ -15,8 +15,8 @@ function Navbar() {
   return (
     <>
       {/* ================= SUB HEADER ================= */}
-      <div className="fixed top-0 w-full z-50 bg-transparent text-white font-bold text-xs sm:text-sm hidden md:block">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex justify-between items-center">
+      <div className="fixed top-0 w-full z-50 bg-transparent text-white font-bold text-xs sm:text-sm hidden md:block ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex justify-between items-center my-2">
           <div className="flex items-center gap-2">
             <MapPin size={14} />
             <span>Surat, Gujarat</span>
