@@ -28,4 +28,16 @@
 .font-body {
   font-family: "Poppins", sans-serif;
 }
+.hero-img {
+  animation: zoomIn 6s ease-in-out forwards;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
 
