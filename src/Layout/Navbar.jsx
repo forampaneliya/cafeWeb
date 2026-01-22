@@ -15,28 +15,33 @@ function Navbar() {
   return (
     <>
       {/* ================= SUB HEADER ================= */}
-      <div className="fixed top-0 w-full z-50 bg-transparent text-white font-bold text-xs sm:text-sm hidden md:block ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex justify-between items-center my-2">
-          <div className="flex items-center gap-2">
-            <MapPin size={14} />
-            <span>Surat, Gujarat</span>
-          </div>
+      {/* ================= SUB HEADER ================= */}
+<div
+  className={`fixed top-0 w-full z-50 text-white font-bold text-xs sm:text-sm hidden md:flex flex-col transition-all duration-300
+    ${scrolled ? "h-0 opacity-0 overflow-hidden" : "h-auto opacity-100"}`}
+>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex justify-between items-center my-2">
+    <div className="flex items-center gap-2">
+      <MapPin size={14} />
+      <span>Surat, Gujarat</span>
+    </div>
 
-          <div className="flex gap-4">
-            <div className="flex items-center gap-2">
-              <Mail size={14} />
-              <span>info@brandname.com</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <PhoneCall size={14} />
-              <span>+91 98765 43210</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <hr className="border-t border-white/40" />
+    <div className="flex gap-4">
+      <div className="flex items-center gap-2">
+        <Mail size={14} />
+        <span>info@brandname.com</span>
       </div>
+      <div className="flex items-center gap-2">
+        <PhoneCall size={14} />
+        <span>+91 98765 43210</span>
+      </div>
+    </div>
+  </div>
+
+  {/* Divider */}
+  <hr className="border-t border-white/40" />
+</div>
+
 
       {/* ================= MAIN HEADER ================= */}
       <header
