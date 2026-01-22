@@ -60,16 +60,17 @@ function Navbar() {
           {/* Desktop Menu */}
           <nav className="ml-auto hidden lg:flex gap-8">
             {["Home", "About", "Menu", "Gallery", "Franchise"].map((item) => (
-              <a
+             <a
                 key={item}
                 href="#"
                 className="relative font-bold text-[#FCE779] text-sm tracking-wide
-                before:absolute before:left-0 before:-bottom-2
+                before:absolute before:left-1/2 before:-translate-x-1/2 before:-bottom-2
                 before:w-0 before:h-[1px] before:bg-white
-                after:absolute after:right-0 after:-bottom-4
+                after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-3
                 after:w-0 after:h-[1px] after:bg-white
                 hover:before:w-full hover:after:w-full
-                transition-all duration-300"
+                before:transition-all before:duration-300
+                after:transition-all after:duration-300"
               >
                 {item}
               </a>
