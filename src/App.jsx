@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react'
 import './App.css'
-import Footer from './layout/Footer'
+import Footer from './Layout/Footer'
 import AllRoute from './AllRoute'
 import Navbar from './layout/Navbar'
 import "slick-carousel/slick/slick.css";
