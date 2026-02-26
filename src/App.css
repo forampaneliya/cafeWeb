@@ -80,3 +80,34 @@
   animation: flipOutX 0.5s ease-in forwards;
   transform-origin: center;
 }
+
+
+@keyframes slideNext {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slidePrev {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-next {
+  animation: slideNext 0.7s ease-in-out;
+}
+
+.animate-slide-prev {
+  animation: slidePrev 0.7s ease-in-out;
+}
