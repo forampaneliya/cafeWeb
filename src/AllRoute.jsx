@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Homee from './pages/Homee'
+import Homee from './Pages/Homee'
 import About from './Pages/About'
 import Menu from './Pages/Menu'
 import OurStory from './Pages/Gellary'
