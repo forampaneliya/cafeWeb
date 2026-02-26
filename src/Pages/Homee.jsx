@@ -158,6 +158,45 @@ function Homee() {
     },
   ];
 
+
+  const dishes = [
+  {
+    name: "Grilled Steak",
+    price: "₹900",
+    img: "https://images.unsplash.com/photo-1544025162-d76694265947",
+  },
+  {
+    name: "Roasted Chicken",
+    price: "₹750",
+    img: "https://images.unsplash.com/photo-1604908554023-8a61c5b6ad9d",
+  },
+  {
+    name: "Lamb Chops",
+    price: "₹1200",
+    img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
+  },
+  {
+    name: "Herb Fish",
+    price: "₹850",
+    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
+  },
+];
+
+  const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState("next");
+
+  const next = () => {
+    setDirection("next");
+    setIndex((prev) => (prev + 2) % dishes.length);
+  };
+
+  const prev = () => {
+    setDirection("prev");
+    setIndex((prev) =>
+      prev - 2 < 0 ? dishes.length - 2 : prev - 2
+    );
+  };
+
   return (
     <>
       {/* HERO SLIDER */}
@@ -384,6 +423,61 @@ function Homee() {
         ))}
       </div>
     </section>
+
+
+       <section className="bg-black text-white py-24 relative overflow-hidden">
+      <h2 className="text-center text-4xl font-serif mb-16">MENU</h2>
+
+      {/* CENTER AREA */}
+      <div className="relative w-full flex justify-center overflow-hidden h-[360px]">
+
+        {/* SLIDING WRAPPER */}
+        <div
+          key={index}
+          className={`flex gap-12 transition-all duration-700 ease-in-out
+            ${direction === "next" ? "animate-slide-next" : "animate-slide-prev"}
+          `}
+        >
+          {[0, 1].map((i) => {
+            const dish = dishes[(index + i) % dishes.length];
+            return (
+              <div
+                key={i}
+                className="w-[260px] text-center"
+              >
+                <img
+                  src={dish.img}
+                  className="w-[260px] h-[260px] rounded-full object-cover shadow-2xl mx-auto"
+                />
+                <h3 className="mt-4 text-lg font-semibold">{dish.name}</h3>
+                <p className="text-[#C78665]">{dish.price}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* CONTROLS */}
+      <div className="flex justify-center gap-12 mt-12">
+        <button
+          onClick={prev}
+          className="w-14 h-14 rounded-full border border-white/30
+            flex items-center justify-center hover:bg-white/10"
+        >
+          <ChevronLeft />
+        </button>
+
+        <button
+          onClick={next}
+          className="w-14 h-14 rounded-full border border-white/30
+            flex items-center justify-center hover:bg-white/10"
+        >
+          <ChevronRight />
+        </button>
+      </div>
+    </section>
+
+    
     </>
   );
 }
