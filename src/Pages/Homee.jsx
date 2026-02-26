@@ -289,43 +289,12 @@ const dishes = [
   ];
 
 
-  const dishes = [
-  {
-    name: "Grilled Steak",
-    price: "₹900",
-    img: "https://images.unsplash.com/photo-1544025162-d76694265947",
-  },
-  {
-    name: "Roasted Chicken",
-    price: "₹750",
-    img: "https://images.unsplash.com/photo-1604908554023-8a61c5b6ad9d",
-  },
-  {
-    name: "Lamb Chops",
-    price: "₹1200",
-    img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
-  },
-  {
-    name: "Herb Fish",
-    price: "₹850",
-    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
-  },
-];
+  
 
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState("next");
 
-  const next = () => {
-    setDirection("next");
-    setIndex((prev) => (prev + 2) % dishes.length);
-  };
-
-  const prev = () => {
-    setDirection("prev");
-    setIndex((prev) =>
-      prev - 2 < 0 ? dishes.length - 2 : prev - 2
-    );
-  };
+  
 
   return (
     <>
