@@ -1,9 +1,9 @@
 
 import { useEffect, useState } from 'react'
 import './App.css'
-import Footer from './Layout/Footer'
+import Footer from './Layyout/Footer'
 import AllRoute from './AllRoute'
-import Navbar from './layout/Navbar'
+import Navbar from './Layyout/Navbar'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Loader from './Pages/Components/Loader'
