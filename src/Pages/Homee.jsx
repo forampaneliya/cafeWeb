@@ -7,6 +7,16 @@ import whychoose from "../assets/images/whychoose.jpg";
 import { ChevronLeft, ChevronRight, ChevronRightIcon } from "lucide-react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import dish1 from "../assets/images/26.jpg"
+import dish2 from "../assets/images/12.jpg"
+import dish3 from "../assets/images/44.jpg"
+import dish4 from "../assets/images/41.jpg"
+import dish5 from "../assets/images/33.jpg"
+import bg from "../assets/images/bg.jpg"
+
+  import { Users, Clock, Utensils } from "lucide-react";
+
+
 
 
 
@@ -41,8 +51,128 @@ function Homee() {
   const [activeIndex, setActiveIndex] = useState(0);
   const triggersRef = useRef([]);
   const lockRef = useRef(false);
-   const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+
+const dishes = [
+  {
+    tag: "italian special",
+    title: "Classic Margherita Pizza With Fresh Basil",
+    servings: 4,
+    prepTime: "20 m",
+    cookTime: "18 m",
+    img: dish1,
+    videoThumb: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=200&q=80",
+    duration: "04:10",
+  },
+  {
+    tag: "chef's favorite",
+    title: "Creamy Alfredo Pasta With Garlic Bread",
+    servings: 3,
+    prepTime: "15 m",
+    cookTime: "25 m",
+    img: dish2,
+    videoThumb: "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=200&q=80",
+    duration: "03:45",
+  },
+  {
+    tag: "sweet delight",
+    title: "Fudgy Chocolate Brownie With Choco Chips",
+    servings: 2,
+    prepTime: "15 m",
+    cookTime: "30 m",
+    img: dish3,
+    videoThumb: "https://images.unsplash.com/photo-1586985289906-406988974504?w=200&q=80",
+    duration: "02:50",
+  },
+  {
+    tag: "refreshing drink",
+    title: "Mint Mojito With Fresh Lime And Ice",
+    servings: 2,
+    prepTime: "10 m",
+    cookTime: "0 m",
+    img: dish4,
+    videoThumb: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=200&q=80",
+    duration: "02:20",
+  },
+  {
+    tag: "quick bites",
+    title: "Grilled Veg Sandwich With Cheese Filling",
+    servings: 2,
+    prepTime: "10 m",
+    cookTime: "10 m",
+    img: dish5,
+    videoThumb: "https://images.unsplash.com/photo-1550317138-10000687a72b?w=200&q=80",
+    duration: "03:15",
+  },
+];
+
+  const [active, setActive] = useState(0);
+  const [animating, setAnimating] = useState(false);
+
+  const goTo = (index) => {
+    if (animating) return;
+    setAnimating(true);
+    setTimeout(() => {
+      setActive(index);
+      setAnimating(false);
+    }, 400);
+  };
+
+  const prev = () => goTo(active === 0 ? dishes.length - 1 : active - 1);
+  const next = () => goTo(active === dishes.length - 1 ? 0 : active + 1);
+
+  useEffect(() => {
+    const timer = setInterval(next, 5000);
+    return () => clearInterval(timer);
+  }, [active]);
+
+  const dish = dishes[active];
+  const padNum = (n) => String(n).padStart(2, "0");
+
+ 
+
+
+
+
+  const menuItems = [
+    {
+      title: "Classic Latte",
+      desc: "Smooth espresso blended with steamed milk and finished with delicate latte art.",
+      img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93",
+    },
+    {
+      title: "Cappuccino",
+      desc: "Rich espresso with creamy foam, balanced flavor and bold aroma.",
+      img: "https://images.unsplash.com/photo-1511920170033-f8396924c348",
+    },
+    {
+      title: "Caramel Macchiato",
+      desc: "Sweet caramel drizzle over perfectly layered espresso and milk.",
+      img: "https://images.unsplash.com/photo-1498804103079-a6351b050096",
+    },
+    {
+      title: "Mocha Special",
+      desc: "Chocolate infused espresso topped with whipped cream delight.",
+      img: "https://images.unsplash.com/photo-1509785307050-d4066910ec1e",
+    },
+  ];
+
+  const [activeMenu, setActiveMenu] = useState(0);
+
+  // Auto slider
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveMenu((prev) =>
+        prev === menuItems.length - 1 ? 0 : prev + 1
+      );
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
+  
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -66,35 +196,35 @@ function Homee() {
   }, []);
 
   useEffect(() => {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const index = Number(entry.target.dataset.index);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = Number(entry.target.dataset.index);
 
-        // 🔒 prevent multiple triggers
-        if (
-          entry.isIntersecting &&
-          !lockRef.current &&
-          index !== activeIndex
-        ) {
-          lockRef.current = true;
-          setActiveIndex(index);
+          // 🔒 prevent multiple triggers
+          if (
+            entry.isIntersecting &&
+            !lockRef.current &&
+            index !== activeIndex
+          ) {
+            lockRef.current = true;
+            setActiveIndex(index);
 
-          // unlock after animation finishes
-          setTimeout(() => {
-            lockRef.current = false;
-          }, 800); // must match flip animation duration
-        }
-      });
-    },
-    {
-      threshold: 0.7,
-    }
-  );
+            // unlock after animation finishes
+            setTimeout(() => {
+              lockRef.current = false;
+            }, 800); // must match flip animation duration
+          }
+        });
+      },
+      {
+        threshold: 0.7,
+      }
+    );
 
-  triggersRef.current.forEach((el) => el && observer.observe(el));
-  return () => observer.disconnect();
-}, [activeIndex]);
+    triggersRef.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, [activeIndex]);
 
 
   const settings = {
@@ -159,51 +289,20 @@ function Homee() {
   ];
 
 
-  const dishes = [
-  {
-    name: "Grilled Steak",
-    price: "₹900",
-    img: "https://images.unsplash.com/photo-1544025162-d76694265947",
-  },
-  {
-    name: "Roasted Chicken",
-    price: "₹750",
-    img: "https://images.unsplash.com/photo-1604908554023-8a61c5b6ad9d",
-  },
-  {
-    name: "Lamb Chops",
-    price: "₹1200",
-    img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
-  },
-  {
-    name: "Herb Fish",
-    price: "₹850",
-    img: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
-  },
-];
+  
 
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState("next");
 
-  const next = () => {
-    setDirection("next");
-    setIndex((prev) => (prev + 2) % dishes.length);
-  };
-
-  const prev = () => {
-    setDirection("prev");
-    setIndex((prev) =>
-      prev - 2 < 0 ? dishes.length - 2 : prev - 2
-    );
-  };
+  
 
   return (
     <>
       {/* HERO SLIDER */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden ">
         <Slider {...settings}>
           {slides.map((slide, index) => (
-            <div key={index} className="relative h-screen">
+            <div key={index} className="relative h-screen ">
               <img
                 src={slide.img}
                 alt=""
@@ -213,7 +312,7 @@ function Homee() {
               <div className="absolute inset-0 bg-black/40"></div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10"></div>
 
-              <div className="absolute inset-0 flex items-center">
+              <div className="absolute inset-0 flex items-center mt-20  ">
                 <div className="max-w-6xl mx-auto px-6 text-center">
                   <h1 className="text-[26px] sm:text-[32px] md:text-[40px] font-serif font-medium text-[#E7C27D] mb-4">
                     {slide.title}
@@ -233,199 +332,505 @@ function Homee() {
 
 
       <section className="bg-[#140A06] text-[#F4EDE6] py-28 px-6">
-  <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
 
-    {/* LEFT IMAGE SECTION */}
-    <div className="relative flex justify-center">
-      {/* Oval Image */}
-      <div className="w-[320px] h-[420px] md:w-[380px] md:h-[500px] rounded-[180px] overflow-hidden shadow-2xl">
-        <img
-          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5"
-          alt="Cafe Interior"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Experience Badge */}
-      <div className="absolute top-10 -right-6 bg-[#C78665] text-[#140A06] px-6 py-4 rounded-2xl shadow-xl text-center">
-        <p className="text-2xl font-semibold">Since 2025</p>
-        <p className="text-sm tracking-wide">Crafting Coffee & Moments</p>
-      </div>
-
-      {/* Small Avatar */}
-      <div className="absolute bottom-10 left-15 w-25 h-25 rounded-full overflow-hidden border-2 border-[#C78665]">
-        <img
-          src="https://images.unsplash.com/photo-1527980965255-d3b416303d12"
-          alt="Our Barista"
-          className="w-full h-full object-cover"
-        />
-      </div>
-    </div>
-
-    {/* RIGHT CONTENT */}
-    <div>
-      <p className="text-[#C78665] uppercase tracking-[0.3em] text-sm mb-4">
-        About Our Cafe
-      </p>
-
-      <h2 className="text-4xl md:text-5xl font-serif leading-tight mb-6">
-        Crafted With Passion, <br /> Served With Heart
-      </h2>
-
-      <p className="text-[#D6C7BC] text-lg mb-8 max-w-xl">
-        Our cafe is more than just a place for coffee — it’s a space where
-        flavors, conversations, and comfort come together. Every cup and
-        every dish is prepared with care, quality ingredients, and a love
-        for creating memorable moments.
-      </p>
-
-      {/* Bullet Points */}
-      <ul className="space-y-4 mb-10">
-        <li className="flex items-center gap-3">
-         <ChevronRightIcon className="w-4 h-4 text-[#C78665]" />
-
-          Freshly Brewed Coffee & Handcrafted Beverages
-        </li>
-        <li className="flex items-center gap-3">
-          <ChevronRightIcon className="w-4 h-4 text-[#C78665]" />
-
-          House-Made Desserts & Comfort Savories
-        </li>
-        <li className="flex items-center gap-3">
-          <ChevronRightIcon className="w-4 h-4 text-[#C78665]" />
-
-          Warm Ambience for Work, Friends & Relaxation
-        </li>
-      </ul>
-
-      {/* Buttons */}
-    <div className="flex gap-4">
-
-  {/* Explore Menu */}
-  <button
-    className="relative overflow-hidden px-8 py-3 rounded-full font-medium
-      bg-[#C78665] text-white group"
-  >
-    {/* Hover Layer */}
-    <span
-      className="absolute inset-0 bg-white translate-y-full
-        group-hover:translate-y-0 transition-transform duration-300 ease-out"
-    ></span>
-
-    {/* Text */}
-    <span
-      className="relative z-10 group-hover:text-[#C78665]
-        transition-colors duration-300"
-    >
-      Explore Menu
-    </span>
-  </button>
-
-  {/* Visit Our Cafe */}
-  <button
-    className="relative overflow-hidden px-8 py-3 rounded-full font-medium
-      border border-[#D6C7BC] text-[#F4EDE6] group"
-  >
-    {/* Hover Layer */}
-    <span
-      className="absolute inset-0 bg-white translate-y-full
-        group-hover:translate-y-0 transition-transform duration-300 ease-out"
-    ></span>
-
-    {/* Text */}
-    <span
-      className="relative z-10 group-hover:text-[#C78665]
-        transition-colors duration-300"
-    >
-      Visit Our Cafe
-    </span>
-  </button>
-
-</div>
-
-
-    </div>
-
-  </div>
-</section>
-
-
-      {/* SCROLL SECTION */}
-     <section className="bg-[#140A06] text-[#F4EDE6]">
-
-      {/* HEADING (NORMAL SCROLL) */}
-      <div className=" px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-[#C78665] tracking-[0.4em] uppercase text-sm">
-            Not Our Menu — Our Identity
-          </p>
-          <h2 className="mt-6 text-5xl md:text-6xl font-serif">
-            These Dishes Built Our Cafe
-          </h2>
-          <p className="mt-6 text-lg text-[#D6C7BC]">
-            People don’t remember tables. They remember flavors.
-          </p>
-        </div>
-      </div>
-
-      {/* SCROLL SPACE */}
-      <div className="relative h-[400vh]">
-
-        {/* STICKY CONTENT */}
-        <div className="sticky top-0 h-screen flex items-center px-6">
-          <div className="max-w-4xl mx-auto w-full">
-
-            {/* STATIC DESIGN */}
-            <div className="grid md:grid-cols-[auto_1px_1fr] gap-10 items-center overflow-hidden">
-
-              {/* IMAGE */}
+          {/* LEFT IMAGE SECTION */}
+          <div className="relative flex justify-center">
+            {/* Oval Image */}
+            <div className="w-[320px] h-[420px] md:w-[380px] md:h-[500px] rounded-[180px] overflow-hidden shadow-2xl">
               <img
-                key={`img-${activeIndex}`}
-                src={items[activeIndex].img}
-                alt=""
-                className="
-                  w-[300px] h-[300px] object-cover rounded-2xl shadow-2xl mx-auto
-                  animate-flip-in
-                "
+                src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5"
+                alt="Cafe Interior"
+                className="w-full h-full object-cover"
               />
+            </div>
 
-              {/* VERTICAL LINE */}
-              <div className="hidden md:block h-[220px] w-[1px] bg-[#C78665]" />
+            {/* Experience Badge */}
+            <div className="absolute top-10 -right-6 bg-[#C78665] text-[#140A06] px-6 py-4 rounded-2xl shadow-xl text-center">
+              <p className="text-2xl font-semibold">Since 2025</p>
+              <p className="text-sm tracking-wide">Crafting Coffee & Moments</p>
+            </div>
 
-              {/* CONTENT */}
-              <div
-                key={`text-${activeIndex}`}
-                className="animate-flip-in"
+            {/* Small Avatar */}
+            <div className="absolute bottom-10 left-15 w-25 h-25 rounded-full overflow-hidden border-2 border-[#C78665]">
+              <img
+                src="https://images.unsplash.com/photo-1527980965255-d3b416303d12"
+                alt="Our Barista"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          {/* RIGHT CONTENT */}
+          <div>
+            <p className="text-[#C78665] uppercase tracking-[0.3em] text-sm mb-4">
+              About Our Cafe
+            </p>
+
+            <h2 className="text-4xl md:text-5xl font-serif leading-tight mb-6">
+              Crafted With Passion, <br /> Served With Heart
+            </h2>
+
+            <p className="text-[#D6C7BC] text-lg mb-8 max-w-xl">
+              Our cafe is more than just a place for coffee — it’s a space where
+              flavors, conversations, and comfort come together. Every cup and
+              every dish is prepared with care, quality ingredients, and a love
+              for creating memorable moments.
+            </p>
+
+            {/* Bullet Points */}
+            <ul className="space-y-4 mb-10">
+              <li className="flex items-center gap-3">
+                <ChevronRightIcon className="w-4 h-4 text-[#C78665]" />
+
+                Freshly Brewed Coffee & Handcrafted Beverages
+              </li>
+              <li className="flex items-center gap-3">
+                <ChevronRightIcon className="w-4 h-4 text-[#C78665]" />
+
+                House-Made Desserts & Comfort Savories
+              </li>
+              <li className="flex items-center gap-3">
+                <ChevronRightIcon className="w-4 h-4 text-[#C78665]" />
+
+                Warm Ambience for Work, Friends & Relaxation
+              </li>
+            </ul>
+
+            {/* Buttons */}
+            <div className="flex gap-4">
+
+              {/* Explore Menu */}
+              <button
+                className="relative overflow-hidden px-8 py-3 rounded-full font-medium
+      bg-[#C78665] text-white group"
               >
-                <h3 className="text-3xl font-serif text-[#C78665]">
-                  {items[activeIndex].title}
-                </h3>
-                <p className="mt-4 text-lg text-[#E4D6CB]">
-                  {items[activeIndex].desc1}
-                </p>
-                <p className="mt-3 text-base text-[#CFC0B6]">
-                  {items[activeIndex].desc2}
-                </p>
-              </div>
+                {/* Hover Layer */}
+                <span
+                  className="absolute inset-0 bg-white translate-y-full
+        group-hover:translate-y-0 transition-transform duration-300 ease-out"
+                ></span>
+
+                {/* Text */}
+                <span
+                  className="relative z-10 group-hover:text-[#C78665]
+        transition-colors duration-300"
+                >
+                  Explore Menu
+                </span>
+              </button>
+
+              {/* Visit Our Cafe */}
+              <button
+                className="relative overflow-hidden px-8 py-3 rounded-full font-medium
+      border border-[#D6C7BC] text-[#F4EDE6] group"
+              >
+                {/* Hover Layer */}
+                <span
+                  className="absolute inset-0 bg-white translate-y-full
+        group-hover:translate-y-0 transition-transform duration-300 ease-out"
+                ></span>
+
+                {/* Text */}
+                <span
+                  className="relative z-10 group-hover:text-[#C78665]
+        transition-colors duration-300"
+                >
+                  Visit Our Cafe
+                </span>
+              </button>
 
             </div>
+
+
+          </div>
+
+        </div>
+      </section>
+      <section className="bg-[#F4EDE6] py-24 px-6 overflow-hidden relative">
+
+        {/* Inject Animation Styles */}
+        <style>
+          {`
+          @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+          }
+
+          .fade-slide {
+            animation: fadeSlide 0.6s ease forwards;
+          }
+        `}
+        </style>
+
+        <div className="max-w-7xl mx-auto grid md:grid-cols-[1fr_1.5fr] gap-20 items-center">
+
+          {/* LEFT CONTENT */}
+          {/* LEFT CONTENT */}
+          <div className="min-h-[250px]">
+
+            <p className="text-[#B88968] tracking-[0.3em] uppercase text-xs mb-4">
+              Cafechino Special
+            </p>
+
+            <h2 className="text-5xl font-serif text-[#2E1F18] leading-tight">
+              Morning Happy
+            </h2>
+
+            {/* Animated Changing Content Only */}
+            <div key={activeMenu} className="fade-slide mt-8">
+              <h3 className="text-2xl font-serif text-[#2E1F18]">
+                {menuItems[activeMenu].title}
+              </h3>
+
+              <p className="text-[#7A6A62] mt-4 leading-relaxed max-w-md">
+                {menuItems[activeMenu].desc}
+              </p>
+            </div>
+
+            <div className="flex gap-4 mt-8">
+              <button className="px-6 py-3 rounded-full border border-[#2E1F18] text-[#2E1F18] hover:bg-[#2E1F18] hover:text-white transition-all duration-300">
+                About Roasting
+              </button>
+
+              <button className="px-6 py-3 rounded-full bg-[#5A3828] text-white hover:opacity-90 transition-all duration-300">
+                Our Menu
+              </button>
+            </div>
+
+          </div>
+
+          {/* RIGHT IMAGE ROW */}
+          <div className="flex gap-8 justify-between">
+
+            {menuItems.map((item, index) => (
+              <div
+                key={index}
+                onClick={() => setActiveMenu(index)}
+                className="cursor-pointer w-[170px] text-center"
+              >
+                <div
+                  className={`rounded-2xl overflow-hidden transition-all duration-700 ease-in-out
+                ${activeMenu === index
+                      ? "scale-110 shadow-2xl"
+                      : "scale-95 opacity-70"
+                    }`}
+                >
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className={`w-full h-[170px] object-cover transition-transform duration-700
+                    ${activeMenu === index
+                        ? "scale-105"
+                        : "scale-100"
+                      }
+                  `}
+                  />
+                </div>
+
+                <p
+                  className={`mt-4 text-sm font-medium transition-all duration-300
+                ${activeMenu === index
+                      ? "text-[#2E1F18]"
+                      : "text-[#9C8B82]"
+                    }`}
+                >
+                  {item.title}
+                </p>
+
+                <p className="text-xs text-[#9C8B82] mt-1">
+                  ★ 4.{index + 5}
+                </p>
+              </div>
+            ))}
+
+          </div>
+        </div>
+      </section>
+
+      {/* SCROLL SECTION */}
+      <section className="bg-[#140A06] text-[#F4EDE6]">
+
+        {/* HEADING (NORMAL SCROLL) */}
+        <div className="pt-15 px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-[#C78665] tracking-[0.4em] uppercase text-sm">
+              Not Our Menu — Our Identity
+            </p>
+            <h2 className="mt-6 text-5xl md:text-6xl font-serif">
+              These Dishes <br /> Built Our Cafe
+            </h2>
+            <p className="mt-6 text-lg text-[#D6C7BC]">
+              People don’t remember tables. They remember flavors.
+            </p>
           </div>
         </div>
 
-        {/* SCROLL TRIGGERS */}
-        {items.map((_, i) => (
-          <div
-            key={i}
-            ref={(el) => (triggersRef.current[i] = el)}
-            data-index={i}
-            className="h-screen"
-          />
-        ))}
+        {/* SCROLL SPACE */}
+        <div className="relative h-[400vh]">
+
+          {/* STICKY CONTENT */}
+          <div className="sticky top-0 h-screen flex items-center px-6">
+            <div className="max-w-4xl mx-auto w-full">
+
+              {/* STATIC DESIGN */}
+              <div className="grid md:grid-cols-[auto_1px_1fr] gap-10 items-center overflow-hidden">
+
+                {/* IMAGE */}
+                <img
+                  key={`img-${activeIndex}`}
+                  src={items[activeIndex].img}
+                  alt=""
+                  className="
+                  w-[300px] h-[300px] object-cover rounded-2xl shadow-2xl mx-auto
+                  animate-flip-in
+                "
+                />
+
+                {/* VERTICAL LINE */}
+                <div className="hidden md:block h-[220px] w-[1px] bg-[#C78665]" />
+
+                {/* CONTENT */}
+                <div
+                  key={`text-${activeIndex}`}
+                  className="animate-flip-in"
+                >
+                  <h3 className="text-3xl font-serif text-[#C78665]">
+                    {items[activeIndex].title}
+                  </h3>
+                  <p className="mt-4 text-lg text-[#E4D6CB]">
+                    {items[activeIndex].desc1}
+                  </p>
+                  <p className="mt-3 text-base text-[#CFC0B6]">
+                    {items[activeIndex].desc2}
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          {/* SCROLL TRIGGERS */}
+          {items.map((_, i) => (
+            <div
+              key={i}
+              ref={(el) => (triggersRef.current[i] = el)}
+              data-index={i}
+              className="h-screen"
+            />
+          ))}
+        </div>
+      </section>
+
+    <section className="relative bg-[#0d0d0d] min-h-screen flex items-center justify-center px-5 py-10 overflow-hidden">
+
+  {/* Ambient blurred bg glow */}
+  <div
+    className="absolute inset-0 bg-cover bg-center opacity-50  z-0"
+    style={{ backgroundImage: `url(${bg})` }}
+  />
+
+  {/* Glass Card */}
+  <div
+    className="relative z-10 w-full max-w-5xl  rounded-2xl border border-white/10 overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.7)]"
+    style={{
+      backdropFilter: "blur(18px)",
+      WebkitBackdropFilter: "blur(18px)",
+    }}
+  >
+        {/* BODY GRID */}
+        <div className="grid md:grid-cols-2 min-h-[540px]">
+
+          {/* ── LEFT PANEL ── */}
+          <div className="relative flex flex-col justify-between p-10 overflow-hidden">
+
+            {/* Warm blob */}
+            <div className="absolute -left-8 top-12 w-56 h-64 rounded-full bg-[#c88665]/20 blur-[60px] pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col gap-7">
+
+              {/* Tag */}
+              <p className="text-white/40 text-xs tracking-[2px] uppercase font-sans">
+                {dish.tag}
+              </p>
+
+              {/* Title with red left border */}
+              <div className="border-l-[3px] border-[#e63946] pl-4">
+                <h1
+                  key={`title-${active}`}
+                  className="text-white font-serif font-bold leading-snug text-2xl md:text-[28px] transition-all duration-500"
+                  style={{
+                    opacity: animating ? 0 : 1,
+                    transform: animating ? "translateX(-10px)" : "translateX(0)",
+                  }}
+                >
+                  {dish.title}
+                </h1>
+              </div>
+
+              {/* Stats Row */}
+              <div className="flex gap-7 font-sans">
+                {[
+                  { Icon: Users,    label: "servings",  value: dish.servings  },
+                  { Icon: Clock,    label: "prep time", value: dish.prepTime  },
+                  { Icon: Utensils, label: "cook time", value: dish.cookTime  },
+                ].map(({ Icon, label, value }) => (
+                  <div key={label}>
+                    <p className="text-white/40 text-[10px] tracking-wide mb-1 uppercase">{label}</p>
+                    <div className="flex items-center gap-1.5">
+                      <Icon size={13} className="text-white/60" />
+                      <span className="text-white text-sm font-semibold">{value}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Watch and Cook */}
+              <div>
+                <p className="text-white text-sm font-semibold mb-3 font-sans">Watch and Cook</p>
+                <div className="relative w-36 h-[82px] rounded-xl overflow-hidden cursor-pointer group">
+                  <img
+                    src={dish.videoThumb}
+                    alt="Watch and cook"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  {/* Dark overlay + play */}
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
+                      <div
+                        className="ml-0.5"
+                        style={{
+                          width: 0, height: 0,
+                          borderTop: "5px solid transparent",
+                          borderBottom: "5px solid transparent",
+                          borderLeft: "9px solid #111",
+                        }}
+                      />
+                    </div>
+                  </div>
+                  {/* Duration badge */}
+                  <span className="absolute top-1.5 right-1.5 bg-black/60 text-white text-[10px] px-1.5 py-0.5 rounded font-sans">
+                    {dish.duration}
+                  </span>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <div>
+                <button className="bg-[#1a1a1a] hover:bg-[#2e2e2e] text-white text-sm font-semibold font-sans px-8 py-3.5 rounded-full tracking-wide transition-colors duration-200">
+                  Learn More
+                </button>
+              </div>
+            </div>
+
+            {/* ── BOTTOM PREV / NEXT NAV ── */}
+            <div className="relative z-10 flex items-center gap-4 mt-8 font-sans">
+              <button
+                onClick={prev}
+                className="flex items-center gap-1 text-white/50 hover:text-white text-xs transition-colors duration-200"
+              >
+                <ChevronLeft size={14} />
+                Prev
+              </button>
+
+              <span className="text-white/30 text-xs">{padNum(active + 1)}</span>
+
+              {/* Progress bar */}
+              <div className="relative flex-1 max-w-[80px] h-px bg-white/20 rounded overflow-hidden">
+                <div
+                  className="absolute top-0 left-0 h-full bg-white rounded transition-all duration-500"
+                  style={{ width: `${((active + 1) / dishes.length) * 100}%` }}
+                />
+              </div>
+
+              <span className="text-white/30 text-xs">{padNum(dishes.length)}</span>
+
+              <button
+                onClick={next}
+                className="flex items-center gap-1 text-white/50 hover:text-white text-xs transition-colors duration-200"
+              >
+                Next
+                <ChevronRight size={14} />
+              </button>
+            </div>
+          </div>
+
+          {/* ── RIGHT IMAGE PANEL ── */}
+          <div className="relative overflow-hidden h-[550px]">
+            <img
+              key={`img-${active}`}
+              src={dish.img}
+              alt={dish.title}
+              className="w-full h-full object-cover transition-all duration-500"
+              style={{
+                opacity: animating ? 0 : 1,
+                transform: animating ? "scale(1.04)" : "scale(1)",
+              }}
+            />
+            {/* Left-to-right fade overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[rgba(13,13,13,0.65)] via-transparent to-transparent" />
+          </div>
+
+        </div>
       </div>
     </section>
 
 
-     
+
+
+
+
+       <section className="bg-black text-white py-24 relative overflow-hidden">
+      <h2 className="text-center text-4xl font-serif mb-16">MENU</h2>
+
+      {/* CENTER AREA */}
+      <div className="relative w-full flex justify-center overflow-hidden h-[360px]">
+
+        {/* SLIDING WRAPPER */}
+        <div
+          key={index}
+          className={`flex gap-12 transition-all duration-700 ease-in-out
+            ${direction === "next" ? "animate-slide-next" : "animate-slide-prev"}
+          `}
+        >
+          {[0, 1].map((i) => {
+            const dish = dishes[(index + i) % dishes.length];
+            return (
+              <div
+                key={i}
+                className="w-[260px] text-center"
+              >
+                <img
+                  src={dish.img}
+                  className="w-[260px] h-[260px] rounded-full object-cover shadow-2xl mx-auto"
+                />
+                <h3 className="mt-4 text-lg font-semibold">{dish.name}</h3>
+                <p className="text-[#C78665]">{dish.price}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* CONTROLS */}
+      <div className="flex justify-center gap-12 mt-12">
+        <button
+          onClick={prev}
+          className="w-14 h-14 rounded-full border border-white/30
+            flex items-center justify-center hover:bg-white/10"
+        >
+          <ChevronLeft />
+        </button>
+
+        <button
+          onClick={next}
+          className="w-14 h-14 rounded-full border border-white/30
+            flex items-center justify-center hover:bg-white/10"
+        >
+          <ChevronRight />
+        </button>
+      </div>
+    </section>
 
     
     </>

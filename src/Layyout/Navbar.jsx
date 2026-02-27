@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import { Menu, X, MapPin, Mail, PhoneCall } from "lucide-react";
 
@@ -15,60 +16,68 @@ function Navbar() {
   return (
     <>
       {/* ================= SUB HEADER ================= */}
-      {/* ================= SUB HEADER ================= */}
-<div
-  className={`fixed top-0 w-full z-50 text-white font-bold text-xs sm:text-sm hidden md:flex flex-col transition-all duration-300
-    ${scrolled ? "h-0 opacity-0 overflow-hidden" : "h-auto opacity-100"}`}
->
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex justify-between items-center my-2">
-    <div className="flex items-center gap-2">
-      <MapPin size={14} />
-      <span>Surat, Gujarat</span>
-    </div>
+      <div
+        className={`fixed top-0 w-full z-50 text-white font-bold text-xs sm:text-sm hidden md:flex flex-col transition-all duration-300
+        ${scrolled ? "h-0 opacity-0 overflow-hidden" : "h-auto opacity-100"}`}
+      >
+        <div className="max-w-7xl mx-auto px-4 gap-10 sm:px-6 py-2 flex items-center justify-between my-2">
 
-    <div className="flex gap-4">
-      <div className="flex items-center gap-2">
-        <Mail size={14} />
-        <span>info@brandname.com</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <PhoneCall size={14} />
-        <span>+91 98765 43210</span>
-      </div>
-    </div>
+  {/* Left Side */}
+  <div className="flex items-center gap-2 ">
+    <MapPin size={14} />
+    <span>Surat, Gujarat, India</span>
   </div>
 
-  {/* Divider */}
-  <hr className="border-t border-white/40" />
-</div>
+  {/* Right Side */}
+    <div className="flex items-center gap-2">
+      <Mail size={14} />
+      <span>info@brandname.com</span>
+    </div>
 
+    <div className="flex items-center gap-2">
+      <PhoneCall size={14} />
+      <span>+1 213 555 7890</span>
+    </div>
+
+</div>
+        <hr className="border-t border-white/40" />
+      </div>
 
       {/* ================= MAIN HEADER ================= */}
       <header
         className={`fixed w-full z-40 transition-all duration-500
         ${
           scrolled
-            ? "bg-black shadow-lg top-0"
+            ? "bg-[#0E0603] shadow-lg top-0"
             : "bg-transparent top-0 md:top-[52px]"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center">
           {/* Logo */}
-          <img
-            src={logo}
-            alt="Logo"
-            className={`transition-all duration-500 ${
-              scrolled ? "h-10 sm:h-12" : "h-14 sm:h-20"
-            }`}
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              alt="Logo"
+              className={`transition-all duration-500 ${
+                scrolled ? "h-10 sm:h-12" : "h-14 sm:h-20"
+              }`}
+            />
+          </Link>
 
           {/* Desktop Menu */}
           <nav className="ml-auto hidden lg:flex gap-8">
-            {["Home", "About", "Menu", "Gallery", "Franchise"].map((item) => (
-             <a
-                key={item}
-                href="#"
-                className="relative font-bold text-[#FCE779] text-sm tracking-wide
+            {[
+              { name: "Home", path: "/" },
+              { name: "About Us", path: "/about" },
+              { name: "Menu", path: "/menu" },
+              { name: "Gallery", path: "/gellary" },
+              { name: "Franchise", path: "/franchise" },
+              { name: "Contact", path: "/contact" },
+            ].map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className="relative font-bold text-[#FCE779] tracking-widest text-sm
                 before:absolute before:left-1/2 before:-translate-x-1/2 before:-bottom-2
                 before:w-0 before:h-[1px] before:bg-white
                 after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-3
@@ -77,14 +86,14 @@ function Navbar() {
                 before:transition-all before:duration-300
                 after:transition-all after:duration-300"
               >
-                {item}
-              </a>
+                {item.name}
+              </Link>
             ))}
           </nav>
 
           {/* Order Button */}
-          <a
-            href="#"
+          <Link
+            to="/menu"
             className="ml-6 hidden lg:block relative overflow-hidden border border-white
             text-[#FCE779] px-6 py-2 rounded-full text-sm
             before:absolute before:inset-0 before:bg-white before:translate-y-full
@@ -92,7 +101,7 @@ function Navbar() {
             hover:before:translate-y-0 hover:text-black"
           >
             <span className="relative z-10">Order Now</span>
-          </a>
+          </Link>
 
           {/* Toggle Button */}
           <button
@@ -118,30 +127,39 @@ function Navbar() {
             </button>
           </div>
 
-          {/* Sidebar Menu - Only visible on mobile/tablet */}
+          {/* Sidebar Menu */}
           <nav className="flex flex-col mb-8 lg:hidden">
-            {["HOME", "ABOUT US", "MENU", "GALLERY", "CONTACT", "ORDER NOW"].map((item, index) => (
-              <a
-                key={item}
-                href="#"
+            {[
+              { name: "HOME", path: "/" },
+              { name: "ABOUT US", path: "/about" },
+              { name: "MENU", path: "/menu" },
+              { name: "GALLERY", path: "/gellary" },
+              { name: "FRANCHISE", path: "/franchise" },
+              { name: "CONTACT", path: "/contact" },
+            ].map((item, index) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                onClick={() => setOpen(false)}
                 className={`text-white text-sm font-medium py-4 border-b border-gray-700 hover:text-[#FCE779] transition-colors ${
                   index === 0 ? "border-t border-gray-700" : ""
                 }`}
               >
                 {index === 0 && <span className="mr-2">◇</span>}
-                {item}
-              </a>
+                {item.name}
+              </Link>
             ))}
           </nav>
 
-          <h2 className="text-xl font-bold mb-6 border-b border-gray-700 pb-2 lg:text-left text-center lg:border-b-0">
-            Contact Us{!scrolled && <span className="lg:inline hidden">:</span>}<span className="lg:hidden">:</span>
+          {/* Contact Section */}
+          <h2 className="text-xl font-bold mb-6 border-b border-gray-700 pb-2 text-center">
+            Contact Us
           </h2>
 
           <div className="space-y-5 text-sm">
             <div className="flex items-center gap-3">
               <MapPin size={18} />
-              <span>Surat, Gujarat</span>
+              <span>Surat, Gujarat, India</span>
             </div>
             <div className="flex items-center gap-3">
               <Mail size={18} />
@@ -150,6 +168,10 @@ function Navbar() {
             <div className="flex items-center gap-3">
               <PhoneCall size={18} />
               <span>+91 98765 43210</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <PhoneCall size={18} />
+              <span>+1 213 555 7890</span>
             </div>
           </div>
         </div>
