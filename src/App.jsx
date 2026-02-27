@@ -6,7 +6,7 @@ import AllRoute from './AllRoute'
 import Navbar from './Layyout/Navbar'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Loader from './Pages/Components/Loader'
+import Loader from './Pagges/Components/Loader'
 
 
 function App() {

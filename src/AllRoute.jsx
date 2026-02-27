@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Homee from './pages/Homee'
-import About from './Pages/About'
-import Gallery from './Pages/Gellary'
-import ContactUs from './Pages/ContactUs'
-import Franchise from './Pages/Franchise'
-import Menu from './pages/Menu'
+import Homee from './Pagges/Homee'
+import About from './Pagges/About'
+import Gallery from './Pagges/Gellary'
+import ContactUs from './Pagges/ContactUs'
+import Franchise from './Pagges/Franchise'
+import Menu from './Pagges/Menu'
 
 function AllRoute() {
   return (
