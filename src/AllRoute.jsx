@@ -15,7 +15,6 @@ function AllRoute() {
             <Route path='/' element={<Homee/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/menu" element={<Menu/>}/>
-            <Route path="/ourStory" element={<OurStory/>}/>
             <Route path="/gellary" element={<Gallery/>}/>
             <Route path="/franchise" element={<Franchise/>}/>
             <Route path="/contact" element={<ContactUs/>}/>
