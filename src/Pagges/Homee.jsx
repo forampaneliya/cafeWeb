@@ -299,36 +299,84 @@ const dishes = [
   return (
     <>
       {/* HERO SLIDER */}
-      <section className="relative overflow-hidden ">
-        <Slider {...settings}>
-          {slides.map((slide, index) => (
-            <div key={index} className="relative h-screen ">
-              <img
-                src={slide.img}
-                alt=""
-                className="hero-img w-full h-full object-cover"
-              />
+      <section className="relative overflow-hidden">
+  <Slider {...settings}>
+    {slides.map((slide, index) => (
+      <div key={index} className="relative h-[85vh] sm:h-[90vh] md:h-screen">
+        
+        {/* Image */}
+        <img
+          src={slide.img}
+          alt=""
+          className="hero-img w-full h-full object-cover"
+        />
 
-              <div className="absolute inset-0 bg-black/40"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10"></div>
+        {/* Overlays */}
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10"></div>
 
-              <div className="absolute inset-0 flex items-center mt-20  ">
-                <div className="max-w-6xl mx-auto px-6 text-center">
-                  <h1 className="text-[26px] sm:text-[32px] md:text-[40px] font-serif font-medium text-[#E7C27D] mb-4">
-                    {slide.title}
-                  </h1>
-                  <p className="text-white text-lg mb-8 max-w-2xl mx-auto">
-                    {slide.desc}
-                  </p>
-                  <button className="border border-white text-white px-8 py-3 rounded-3xl uppercase tracking-widest text-sm hover:bg-white hover:text-[#3B2A22] transition-all">
-                    Explore Menu
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </Slider>
-      </section>
+        {/* Content */}
+        <div className="absolute inset-0 flex items-center justify-center 
+                        pt-16 sm:pt-20 md:pt-32 lg:pt-0">
+          
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+            
+            {/* Title */}
+            <h1 className="text-[22px] sm:text-[28px] md:text-[36px] lg:text-[44px] xl:text-[48px]
+                           font-serif font-medium text-[#E7C27D] mb-4 leading-tight">
+              {slide.title}
+            </h1>
+
+            {/* Description */}
+            <p className="text-white text-sm sm:text-base md:text-lg
+                          mb-6 sm:mb-8 max-w-xl sm:max-w-2xl mx-auto leading-relaxed">
+              {slide.desc}
+            </p>
+
+            {/* Button */}
+            <button className="border border-white text-white 
+                               px-6 sm:px-8 py-2.5 sm:py-3 
+                               rounded-3xl uppercase tracking-widest 
+                               text-[11px] sm:text-sm 
+                               hover:bg-white hover:text-[#3B2A22] 
+                               transition-all duration-300">
+              Explore Menu
+            </button>
+
+          </div>
+        </div>
+      </div>
+    ))}
+  </Slider>
+
+  {/* Fix Slider Arrows Position */}
+  <style jsx>{`
+    .slick-prev,
+    .slick-next {
+      z-index: 20;
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .slick-prev {
+        left: 10px;
+      }
+      .slick-next {
+        right: 10px;
+      }
+    }
+
+    /* Tablet */
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .slick-prev {
+        left: 20px;
+      }
+      .slick-next {
+        right: 20px;
+      }
+    }
+  `}</style>
+</section>
 
 
       <section className="bg-[#140A06] text-[#F4EDE6] py-28 px-6">
@@ -447,106 +495,106 @@ const dishes = [
 
         </div>
       </section>
-      <section className="bg-[#F4EDE6] py-24 px-6 overflow-hidden relative">
+      <section className="bg-[#F4EDE6] py-16 sm:py-20 md:py-24 px-4 sm:px-6 overflow-hidden relative">
 
-        {/* Inject Animation Styles */}
-        <style>
-          {`
-          @keyframes fadeSlide {
-            0% { opacity: 0; transform: translateY(15px); }
-            100% { opacity: 1; transform: translateY(0); }
-          }
+  {/* Animation Styles */}
+  <style>
+    {`
+      @keyframes fadeSlide {
+        0% { opacity: 0; transform: translateY(15px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
 
-          .fade-slide {
-            animation: fadeSlide 0.6s ease forwards;
-          }
-        `}
-        </style>
+      .fade-slide {
+        animation: fadeSlide 0.6s ease forwards;
+      }
+    `}
+  </style>
 
-        <div className="max-w-7xl mx-auto grid md:grid-cols-[1fr_1.5fr] gap-20 items-center">
+  <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-20 items-center">
 
-          {/* LEFT CONTENT */}
-          {/* LEFT CONTENT */}
-          <div className="min-h-[250px]">
+    {/* LEFT CONTENT */}
+    <div className="min-h-[220px] text-center lg:text-left">
 
-            <p className="text-[#B88968] tracking-[0.3em] uppercase text-xs mb-4">
-              Cafechino Special
-            </p>
+      <p className="text-[#B88968] tracking-[0.3em] uppercase text-xs mb-4">
+        Cafechino Special
+      </p>
 
-            <h2 className="text-5xl font-serif text-[#2E1F18] leading-tight">
-              Morning Happy
-            </h2>
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#2E1F18] leading-tight">
+        Morning Happy
+      </h2>
 
-            {/* Animated Changing Content Only */}
-            <div key={activeMenu} className="fade-slide mt-8">
-              <h3 className="text-2xl font-serif text-[#2E1F18]">
-                {menuItems[activeMenu].title}
-              </h3>
+      {/* Animated Changing Content */}
+      <div key={activeMenu} className="fade-slide mt-6 sm:mt-8">
+        <h3 className="text-xl sm:text-2xl font-serif text-[#2E1F18]">
+          {menuItems[activeMenu].title}
+        </h3>
 
-              <p className="text-[#7A6A62] mt-4 leading-relaxed max-w-md">
-                {menuItems[activeMenu].desc}
-              </p>
-            </div>
+        <p className="text-[#7A6A62] mt-4 leading-relaxed max-w-md mx-auto lg:mx-0">
+          {menuItems[activeMenu].desc}
+        </p>
+      </div>
 
-            <div className="flex gap-4 mt-8">
-              <button className="px-6 py-3 rounded-full border border-[#2E1F18] text-[#2E1F18] hover:bg-[#2E1F18] hover:text-white transition-all duration-300">
-                About Roasting
-              </button>
+      <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start">
+        <button className="px-6 py-3 rounded-full border border-[#2E1F18] text-[#2E1F18] hover:bg-[#2E1F18] hover:text-white transition-all duration-300">
+          About Roasting
+        </button>
 
-              <button className="px-6 py-3 rounded-full bg-[#5A3828] text-white hover:opacity-90 transition-all duration-300">
-                Our Menu
-              </button>
-            </div>
+        <button className="px-6 py-3 rounded-full bg-[#5A3828] text-white hover:opacity-90 transition-all duration-300">
+          Our Menu
+        </button>
+      </div>
 
+    </div>
+
+    {/* RIGHT IMAGE ROW */}
+    <div className="flex gap-6 sm:gap-8 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 scrollbar-hide">
+
+      {menuItems.map((item, index) => (
+        <div
+          key={index}
+          onClick={() => setActiveMenu(index)}
+          className="cursor-pointer min-w-[140px] sm:min-w-[160px] lg:w-[170px] text-center flex-shrink-0"
+        >
+          <div
+            className={`rounded-2xl overflow-hidden transition-all duration-700 ease-in-out
+              ${activeMenu === index
+                ? "scale-105 lg:scale-110 shadow-2xl"
+                : "scale-95 opacity-70"
+              }`}
+          >
+            <img
+              src={item.img}
+              alt={item.title}
+              className={`w-full h-[140px] sm:h-[160px] lg:h-[170px] object-cover transition-transform duration-700
+                ${activeMenu === index
+                  ? "scale-105"
+                  : "scale-100"
+                }
+              `}
+            />
           </div>
 
-          {/* RIGHT IMAGE ROW */}
-          <div className="flex gap-8 justify-between">
+          <p
+            className={`mt-4 text-sm font-medium transition-all duration-300
+              ${activeMenu === index
+                ? "text-[#2E1F18]"
+                : "text-[#9C8B82]"
+              }`}
+          >
+            {item.title}
+          </p>
 
-            {menuItems.map((item, index) => (
-              <div
-                key={index}
-                onClick={() => setActiveMenu(index)}
-                className="cursor-pointer w-[170px] text-center"
-              >
-                <div
-                  className={`rounded-2xl overflow-hidden transition-all duration-700 ease-in-out
-                ${activeMenu === index
-                      ? "scale-110 shadow-2xl"
-                      : "scale-95 opacity-70"
-                    }`}
-                >
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className={`w-full h-[170px] object-cover transition-transform duration-700
-                    ${activeMenu === index
-                        ? "scale-105"
-                        : "scale-100"
-                      }
-                  `}
-                  />
-                </div>
-
-                <p
-                  className={`mt-4 text-sm font-medium transition-all duration-300
-                ${activeMenu === index
-                      ? "text-[#2E1F18]"
-                      : "text-[#9C8B82]"
-                    }`}
-                >
-                  {item.title}
-                </p>
-
-                <p className="text-xs text-[#9C8B82] mt-1">
-                  ★ 4.{index + 5}
-                </p>
-              </div>
-            ))}
-
-          </div>
+          <p className="text-xs text-[#9C8B82] mt-1">
+            ★ 4.{index + 5}
+          </p>
         </div>
-      </section>
+      ))}
+
+    </div>
+
+  </div>
+</section>
 
       {/* SCROLL SECTION */}
       <section className="bg-[#140A06] text-[#F4EDE6]">
