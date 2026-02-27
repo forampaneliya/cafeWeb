@@ -354,13 +354,13 @@ function Homee() {
      <section className="bg-[#140A06] text-[#F4EDE6]">
 
       {/* HEADING (NORMAL SCROLL) */}
-      <div className="pt-15 px-6">
+      <div className=" px-6">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-[#C78665] tracking-[0.4em] uppercase text-sm">
             Not Our Menu — Our Identity
           </p>
           <h2 className="mt-6 text-5xl md:text-6xl font-serif">
-            These Dishes <br /> Built Our Cafe
+            These Dishes Built Our Cafe
           </h2>
           <p className="mt-6 text-lg text-[#D6C7BC]">
             People don’t remember tables. They remember flavors.
@@ -425,57 +425,7 @@ function Homee() {
     </section>
 
 
-       <section className="bg-black text-white py-24 relative overflow-hidden">
-      <h2 className="text-center text-4xl font-serif mb-16">MENU</h2>
-
-      {/* CENTER AREA */}
-      <div className="relative w-full flex justify-center overflow-hidden h-[360px]">
-
-        {/* SLIDING WRAPPER */}
-        <div
-          key={index}
-          className={`flex gap-12 transition-all duration-700 ease-in-out
-            ${direction === "next" ? "animate-slide-next" : "animate-slide-prev"}
-          `}
-        >
-          {[0, 1].map((i) => {
-            const dish = dishes[(index + i) % dishes.length];
-            return (
-              <div
-                key={i}
-                className="w-[260px] text-center"
-              >
-                <img
-                  src={dish.img}
-                  className="w-[260px] h-[260px] rounded-full object-cover shadow-2xl mx-auto"
-                />
-                <h3 className="mt-4 text-lg font-semibold">{dish.name}</h3>
-                <p className="text-[#C78665]">{dish.price}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* CONTROLS */}
-      <div className="flex justify-center gap-12 mt-12">
-        <button
-          onClick={prev}
-          className="w-14 h-14 rounded-full border border-white/30
-            flex items-center justify-center hover:bg-white/10"
-        >
-          <ChevronLeft />
-        </button>
-
-        <button
-          onClick={next}
-          className="w-14 h-14 rounded-full border border-white/30
-            flex items-center justify-center hover:bg-white/10"
-        >
-          <ChevronRight />
-        </button>
-      </div>
-    </section>
+     
 
     
     </>
