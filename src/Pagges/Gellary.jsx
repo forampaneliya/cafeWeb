@@ -243,7 +243,7 @@ const [start, setStart] = useState(false);
       {/* ━━━━━━━━━━━━━━━━━ 2. STATS  [LIGHT] ━━━━━━━━━━━━━━━━━ */}
       <section
       ref={sectionRef}
-      className="bg-[#F4EDE6] py-16 px-6 border-y border-[#E0D0C4]"
+      className="bg-[#F4EDE6]  px-6 pb-16 border-[#E0D0C4]"
     >
       <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
         {stats.map((s, i) => (
