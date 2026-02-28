@@ -4,18 +4,52 @@ import {
   Globe, Flame, Leaf, Instagram, Twitter, Facebook,
   Award, Clock, Heart, Users, MapPin, Play, X
 } from "lucide-react";
+import chef1 from "../assets/images/chef1.png"
+import chef2 from "../assets/images/chef2.png"
+import chef3 from "../assets/images/chef3.png"
+import chef4 from "../assets/images/chef4.png"
+
 
 /* ══════════════════════════════════════════════════════
    DATA
 ══════════════════════════════════════════════════════ */
 
 const milestones = [
-  { year: "2019", title: "The First Spark", desc: "Born from a passion for global flavors, our founder Marco started experimenting with world cuisines in a small home kitchen in Milan." },
-  { year: "2021", title: "Doors Open", desc: "Cafechino welcomed its first guests with a menu spanning 8 countries. The response was overwhelming — every table booked for 3 months." },
-  { year: "2022", title: "Michelin Recognition", desc: "Our dedication earned us a Michelin Bib Gourmand, cementing our place as a destination for discerning food lovers." },
-  { year: "2023", title: "Global Expansion", desc: "Partnerships with chefs from Japan, France, India and Mexico brought 200+ authentic dishes under one roof." },
-  { year: "2024", title: "Community & Culture", desc: "Launched our weekend culinary workshops — teaching guests to recreate world dishes at home. Over 5,000 students so far." },
-  { year: "2025", title: "Today & Beyond", desc: "A 3rd location, a cookbook, and a dedicated spice lab — Cafechino continues to rewrite what a café can be." },
+  {
+    year: "2010",
+    title: "The First Cup",
+    desc: "What began as a small corner café in the heart of the city quickly became a neighborhood institution. A single espresso machine, two mismatched tables, and an endless passion for craft.",
+    icon: "☕",
+    stat: "1 Location",
+  },
+  {
+    year: "2013",
+    title: "Flavors From Afar",
+    desc: "Our founders traveled through Morocco, Vietnam, and Italy — returning with spices, stories, and a global menu that transformed Cafechino into a culinary destination.",
+    icon: "🌍",
+    stat: "3 Continents",
+  },
+  {
+    year: "2016",
+    title: "A Culinary Name",
+    desc: "Featured in 'Best Hidden Gems' by a national food magazine. Our slow-roasted lamb and cardamom tart became signatures that drew guests from across the country.",
+    icon: "⭐",
+    stat: "12 Awards",
+  },
+  {
+    year: "2019",
+    title: "The Second Chapter",
+    desc: "We opened our second location in the arts district — a larger canvas for our culinary vision, complete with an open kitchen, wine cellar, and private dining room.",
+    icon: "🏛️",
+    stat: "2 Locations",
+  },
+  {
+    year: "2023",
+    title: "Present Day",
+    desc: "Today Cafechino serves over 500 guests daily across two locations, hosts monthly chef collaborations, and remains fiercely committed to the warmth of that first tiny café.",
+    icon: "✨",
+    stat: "500+ Daily",
+  },
 ];
 
 const chefs = [
@@ -25,7 +59,7 @@ const chefs = [
     origin: "Milan, Italy",
     specialty: "Italian & Mediterranean",
     exp: "14 yrs",
-    img: "https://images.unsplash.com/photo-1583394293214-0b7c0cb1a8e0?w=500&q=80",
+    img: chef1,
     quote: "Every dish is a story told through flavor.",
     awards: ["Michelin Star 2022", "Best Chef EU 2023"],
     color: "#C78665",
@@ -36,7 +70,7 @@ const chefs = [
     origin: "Kyoto, Japan",
     specialty: "Japanese & Asian Fusion",
     exp: "11 yrs",
-    img: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=500&q=80",
+    img: chef2,
     quote: "Simplicity is the ultimate sophistication.",
     awards: ["Best Asian Cuisine 2023"],
     color: "#8FA68E",
@@ -47,7 +81,7 @@ const chefs = [
     origin: "Barcelona, Spain",
     specialty: "French Pastry & Spanish",
     exp: "9 yrs",
-    img: "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=500&q=80",
+    img: chef3,
     quote: "Desserts are the punctuation of a great meal.",
     awards: ["Top Pastry Chef 2024"],
     color: "#B8956A",
@@ -58,7 +92,7 @@ const chefs = [
     origin: "Lyon, France",
     specialty: "French Classics & Vegan",
     exp: "7 yrs",
-    img: "https://images.unsplash.com/photo-1607631568010-a87245c0daf8?w=500&q=80",
+    img: chef4,
     quote: "Great food is all about balance and love.",
     awards: ["Rising Star Chef 2024"],
     color: "#C4A882",
@@ -121,6 +155,28 @@ export default function About() {
   const [videoOpen, setVideoOpen] = useState(false);
   const [hoveredValue, setHoveredValue] = useState(null);
   const statsRef = useRef(null);
+
+  const [active, setActive] = useState(0);
+  const intervalRef = useRef(null);
+
+  const startAuto = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setActive((a) => (a + 1) % milestones.length);
+    }, 4000);
+  };
+
+  useEffect(() => {
+    startAuto();
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  const handleSelect = (i) => {
+    setActive(i);
+    startAuto();
+  };
+
+  const m = milestones[active];
 
   // counter values
   const c0 = useCounter(18, statsVisible);
@@ -206,54 +262,61 @@ export default function About() {
       `}</style>
 
       {/* ━━━━━━━━ 1. HERO [DARK] ━━━━━━━━ */}
-      <section className="relative pt-30 mx-auto min-h-screen flex items-end pb-20 overflow-hidden bg-[#0A0502]">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0502] pt-10 md:pt-10 lg:pt-20 xl:pt-20">
         {/* BG */}
-        <div className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{ backgroundImage: "url(https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=85)" }} />
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-30"
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=85)",
+          }}
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A0502]/95 via-[#0A0502]/70 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0502] via-transparent to-[#0A0502]/40" />
 
-      
-
         {/* Corner accents */}
-        <div className="hidden md:block absolute top-50 left-10 w-16 h-16 border-t border-l border-[#C78665]/40" />
+        <div className="hidden md:block xl:top-40 xl:left-40 md:top-40 md:left-30 absolute top-12 left-10 w-16 h-16 border-t border-l border-[#C78665]/40" />
         <div className="hidden md:block absolute bottom-10 right-10 w-16 h-16 border-b border-r border-[#C78665]/40" />
 
-        {/* Chef image fading from right */}
-        <img
-          src="https://images.unsplash.com/photo-1583394293214-0b7c0cb1a8e0?w=800&q=85"
-          alt="Chef"
-          className="hidden lg:block absolute right-0 bottom-0 h-[85%] w-[45%] object-cover object-top pointer-events-none"
-          style={{ maskImage: "linear-gradient(to left, black 50%, transparent 90%)", WebkitMaskImage: "linear-gradient(to left, black 50%, transparent 90%)" }}
-        />
-
         {/* Content */}
-        <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 pt-36">
-          <div className="max-w-2xl">
-            <p className="font-josefin fu1 text-[#C78665] tracking-[.4em] text-[10px] sm:text-[11px] uppercase mb-5">
+        <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 py-24 sm:py-32 flex items-center justify-center">
+          <div className="w-full max-w-2xl text-center mx-auto">
+            <p className="font-josefin text-[#C78665] tracking-[.4em] text-[10px] sm:text-[11px] uppercase mb-5">
               Our Story · Cafechino
             </p>
-            <h1 className="font-cormorant fu2 font-light text-[#F4EDE6] leading-[1.05] mb-6"
-              style={{ fontSize: "clamp(42px,7vw,90px)" }}>
-              Crafted With<br />
-              <em className="text-[#C78665]">Passion,</em><br />
+
+            <h1
+              className="font-cormorant font-light text-[#F4EDE6] leading-[1.05] mb-6"
+              style={{ fontSize: "clamp(36px, 7vw, 70px)" }}
+            >
+              Crafted With
+              <br />
+              <em className="text-[#C78665]">Passion,</em>
+              <br />
               Served With Heart
             </h1>
-            <div className="fu3 h-px bg-[#C78665] w-24 mb-6 pulse-line" />
-            <p className="font-josefin fu3 text-[#C4A882] text-sm font-light leading-relaxed max-w-md mb-10">
-              Born from a love of global cuisines and the belief that food is the world's most powerful language. Every table at Cafechino is a journey across continents.
+
+            {/* Divider — centered */}
+            <div className="h-px bg-[#C78665] w-24 mb-6 mx-auto" />
+
+            <p className="font-josefin text-[#C4A882] text-sm font-light leading-relaxed max-w-md mb-10 mx-auto">
+              Born from a love of global cuisines and the belief that food is the
+              world's most powerful language. Every table at Cafechino is a
+              journey across continents.
             </p>
-            <div className="fu4 flex flex-wrap gap-4">
-              <button className="font-josefin px-8 py-3.5 rounded-full bg-[#C78665] text-[#140A06] text-xs font-semibold tracking-[.15em] uppercase hover:opacity-85 transition-opacity">
+
+            {/* Buttons — centered and wrapping nicely on small screens */}
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
+              <button className="font-josefin w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#C78665] text-[#140A06] text-xs font-semibold tracking-[.15em] uppercase hover:opacity-85 transition-opacity">
                 Our Menu
               </button>
-              {/* Video play button */}
+
               <button
                 onClick={() => setVideoOpen(true)}
-                className="font-josefin flex items-center gap-3 px-6 py-3.5 rounded-full border border-[#C78665]/40 text-[#F4EDE6] text-xs font-light tracking-[.1em] uppercase hover:border-[#C78665] hover:text-[#C78665] transition-all group"
+                className="font-josefin w-full sm:w-auto flex items-center justify-center gap-3 px-6 py-3.5 rounded-full border border-[#C78665]/40 text-[#F4EDE6] text-xs font-light tracking-[.1em] uppercase hover:border-[#C78665] hover:text-[#C78665] transition-all group"
               >
                 <span className="relative flex-shrink-0">
-                  <span className="pulse-ring absolute inset-0 rounded-full border border-[#C78665]" />
+                  <span className="absolute inset-0 rounded-full border border-[#C78665] animate-ping opacity-40" />
                   <span className="w-7 h-7 rounded-full bg-[#C78665]/20 border border-[#C78665]/50 flex items-center justify-center">
                     <Play size={10} className="text-[#C78665] ml-0.5" />
                   </span>
@@ -262,10 +325,24 @@ export default function About() {
               </button>
             </div>
           </div>
-
-          {/* Floating stat badges */}
-          
         </div>
+
+        {/* Video modal */}
+        {videoOpen && (
+          <div
+            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+            onClick={() => setVideoOpen(false)}
+          >
+            <div
+              className="bg-[#0A0502] rounded-xl overflow-hidden w-full max-w-3xl aspect-video flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <p className="text-[#C4A882] font-josefin text-sm tracking-widest uppercase">
+                Video coming soon
+              </p>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* ━━━━━━━━ 2. STATS [LIGHT] ━━━━━━━━ */}
@@ -384,66 +461,146 @@ export default function About() {
       </section>
 
       {/* ━━━━━━━━ 5. TIMELINE / MILESTONES [DARK] ━━━━━━━━ */}
-      <section className="bg-[#0A0502] py-24 px-6 sm:px-10 overflow-hidden">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="font-josefin text-[#C78665] tracking-[.35em] text-[11px] uppercase mb-4">How We Got Here</p>
-            <h2 className="font-cormorant font-light text-[#F4EDE6] leading-tight"
-              style={{ fontSize: "clamp(32px,4vw,56px)" }}>
-              Our <em className="text-[#C78665]">Journey</em>
-            </h2>
+      <section style={{ background: "#0D0D0D", padding: "80px 24px", fontFamily: "'Josefin Sans', sans-serif" }}>
+
+  <style>{`
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Josefin+Sans:wght@300;400;600&display=swap');
+    @keyframes fillBar { from { width: 0% } to { width: 100% } }
+    .year-btn:hover { border-color: #E8956D !important; color: #E8956D !important; }
+    .prev-btn:hover { border-color: #E8956D !important; color: #E8956D !important; }
+    .next-btn:hover { opacity: 0.85; }
+  `}</style>
+
+  <div style={{ maxWidth: 960, margin: "0 auto" }}>
+
+    {/* ── Header ── */}
+    <div style={{ textAlign: "center", marginBottom: 56 }}>
+      <p style={{ color: "#E8956D", letterSpacing: "0.35em", fontSize: 11, textTransform: "uppercase", margin: "0 0 12px" }}>
+        How We Got Here
+      </p>
+      <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, color: "#FFFFFF", fontSize: "clamp(36px,5vw,60px)", lineHeight: 1.1, margin: 0 }}>
+        Our <em style={{ color: "#E8956D" }}>Journey</em>
+      </h2>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, marginTop: 20 }}>
+        <div style={{ height: 1, width: 48, background: "#3A2A1E" }} />
+        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#E8956D" }} />
+        <div style={{ height: 1, width: 48, background: "#3A2A1E" }} />
+      </div>
+    </div>
+
+    {/* ── Body ── */}
+    <div style={{ display: "flex", gap: 40, alignItems: "flex-start", flexWrap: "wrap" }}>
+
+      {/* Year Pills */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 10, flexShrink: 0 }}>
+        {milestones.map((item, i) => (
+          <button
+            key={i}
+            className="year-btn"
+            onClick={() => handleSelect(i)}
+            style={{
+              fontFamily: "'Josefin Sans', sans-serif",
+              fontSize: 12,
+              letterSpacing: "0.15em",
+              padding: "10px 20px",
+              borderRadius: 999,
+              border: active === i ? "none" : "1px solid #3A2A1E",
+              background: active === i ? "#E8956D" : "transparent",
+              color: active === i ? "#0D0D0D" : "#B09080",
+              fontWeight: active === i ? 600 : 300,
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              transform: active === i ? "scale(1.08)" : "scale(1)",
+              boxShadow: active === i ? "0 0 24px rgba(232,149,109,0.35)" : "none",
+              textAlign: "left",
+            }}
+          >
+            {item.year}
+          </button>
+        ))}
+      </div>
+
+      {/* Card */}
+      <div style={{ flex: 1, minWidth: 280 }}>
+        <div style={{
+          background: "#181818",
+          border: "1px solid #2E2018",
+          borderRadius: 20,
+          padding: "40px 36px",
+          position: "relative",
+          overflow: "hidden",
+        }}>
+
+          {/* Corner arc */}
+          <div style={{ position: "absolute", top: 0, right: 0, width: 160, height: 160, borderBottomLeftRadius: "100%", borderBottom: "1px solid rgba(232,149,109,0.12)", borderLeft: "1px solid rgba(232,149,109,0.12)", pointerEvents: "none" }} />
+
+          {/* Watermark year */}
+          <div style={{ position: "absolute", top: 16, right: 24, fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(64px,10vw,100px)", fontWeight: 300, color: "rgba(232,149,109,0.10)", lineHeight: 1, userSelect: "none", pointerEvents: "none" }}>
+            {m.year}
           </div>
 
-          <div className="grid lg:grid-cols-[1fr_2px_1fr] gap-0 lg:gap-8 items-start">
-            {/* LEFT: year selectors */}
-            <div className="flex lg:flex-col gap-3 flex-wrap justify-center lg:justify-end mb-10 lg:mb-0">
-              {milestones.map((m, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveMilestone(i)}
-                  className={`font-josefin text-sm font-light px-5 py-2.5 rounded-full transition-all duration-300 text-left
-                    ${activeMilestone === i
-                      ? "bg-[#C78665] text-[#140A06] font-semibold"
-                      : "border border-[#2A1A10] text-[#8A7060] hover:border-[#C78665]/40 hover:text-[#C78665]"
-                    }`}
-                >
-                  {m.year}
-                </button>
-              ))}
-            </div>
-
-            {/* CENTER: vertical line (desktop) */}
-            <div className="hidden lg:block relative bg-[#2A1A10] rounded-full">
-              <div
-                className="absolute top-0 left-0 w-full bg-[#C78665] rounded-full transition-all duration-700"
-                style={{ height: `${((activeMilestone + 1) / milestones.length) * 100}%` }}
-              />
-            </div>
-
-            {/* RIGHT: content */}
-            <div key={activeMilestone} className="t-anim pl-0 lg:pl-8">
-              <div className="bg-[#140A06] border border-[#2A1A10] rounded-2xl p-8 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 border-b border-l border-[#C78665]/10 rounded-bl-full" />
-                <p className="font-cormorant text-6xl font-light text-[#C78665]/20 leading-none mb-2">
-                  {milestones[activeMilestone].year}
-                </p>
-                <h3 className="font-cormorant text-2xl text-[#F4EDE6] font-semibold mb-4">
-                  {milestones[activeMilestone].title}
-                </h3>
-                <p className="font-josefin text-sm text-[#8A7060] font-light leading-relaxed">
-                  {milestones[activeMilestone].desc}
-                </p>
-                {/* Progress dots */}
-                <div className="flex gap-2 mt-6">
-                  {milestones.map((_, i) => (
-                    <div key={i} className={`h-1 rounded-full transition-all duration-300 ${i === activeMilestone ? "w-8 bg-[#C78665]" : "w-2 bg-[#2A1A10]"}`} />
-                  ))}
-                </div>
-              </div>
-            </div>
+          {/* Icon */}
+          <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: 14, background: "rgba(232,149,109,0.12)", border: "1px solid rgba(232,149,109,0.25)", fontSize: 22, marginBottom: 20 }}>
+            {m.icon}
           </div>
+
+          {/* Stat badge */}
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+            <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#E8956D" }} />
+            <span style={{ color: "#E8956D", fontSize: 10, letterSpacing: "0.35em", textTransform: "uppercase", fontWeight: 400 }}>
+              {m.stat}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, color: "#FFFFFF", fontSize: "clamp(24px,3.5vw,40px)", lineHeight: 1.2, margin: "0 0 16px" }}>
+            {m.title}
+          </h3>
+
+          {/* Divider */}
+          <div style={{ height: 1, width: 48, background: "rgba(232,149,109,0.5)", marginBottom: 18 }} />
+
+          {/* Description */}
+          <p style={{ color: "#C8B8A8", fontSize: 13, fontWeight: 300, lineHeight: 1.9, margin: 0 }}>
+            {m.desc}
+          </p>
         </div>
-      </section>
+
+        {/* Progress bar */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 20 }}>
+          <span style={{ color: "#E8956D", fontSize: 10, letterSpacing: "0.3em", fontWeight: 400 }}>
+            {String(active + 1).padStart(2, "0")}
+          </span>
+          <div style={{ flex: 1, height: 1, background: "#2E2018", borderRadius: 4, overflow: "hidden", position: "relative" }}>
+            <div key={active} style={{ position: "absolute", left: 0, top: 0, height: "100%", background: "#E8956D", borderRadius: 4, animation: "fillBar 4s linear forwards" }} />
+          </div>
+          <span style={{ color: "#5A4A3A", fontSize: 10, letterSpacing: "0.3em", fontWeight: 300 }}>
+            {String(milestones.length).padStart(2, "0")}
+          </span>
+        </div>
+
+        {/* Prev / Next */}
+        <div style={{ display: "flex", gap: 10, marginTop: 16, justifyContent: "flex-end" }}>
+          <button
+            className="prev-btn"
+            onClick={() => handleSelect((active - 1 + milestones.length) % milestones.length)}
+            style={{ width: 40, height: 40, borderRadius: "50%", border: "1px solid #3A2A1E", background: "transparent", color: "#B09080", cursor: "pointer", fontSize: 14, display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s ease" }}
+          >
+            ←
+          </button>
+          <button
+            className="next-btn"
+            onClick={() => handleSelect((active + 1) % milestones.length)}
+            style={{ width: 40, height: 40, borderRadius: "50%", border: "none", background: "#E8956D", color: "#0D0D0D", cursor: "pointer", fontSize: 14, display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s ease" }}
+          >
+            →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* ━━━━━━━━ 6. CHEFS [LIGHT] ━━━━━━━━ */}
       <section className="bg-[#F4EDE6] py-24 px-6 sm:px-10">
@@ -609,33 +766,7 @@ export default function About() {
       </section>
 
       {/* ━━━━━━━━ 9. CTA BANNER [DARK] ━━━━━━━━ */}
-      <section className="relative py-28 px-6 overflow-hidden bg-[#0A0502]">
-        <div className="absolute inset-0 bg-cover bg-center opacity-15"
-          style={{ backgroundImage: "url(https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&q=85)" }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0502] via-[#0A0502]/80 to-[#0A0502]" />
-        <div className="hidden md:block absolute top-10 left-10 w-20 h-20 border-t border-l border-[#C78665]/30" />
-        <div className="hidden md:block absolute bottom-10 right-10 w-20 h-20 border-b border-r border-[#C78665]/30" />
-
-        <div className="relative z-10 text-center max-w-2xl mx-auto">
-          <p className="font-josefin text-[#C78665] tracking-[.35em] text-[11px] uppercase mb-5">Begin Your Journey</p>
-          <h2 className="font-cormorant font-light text-[#F4EDE6] leading-tight mb-5"
-            style={{ fontSize: "clamp(36px,5vw,68px)" }}>
-            Ready to Taste the <em className="text-[#C78665]">World?</em>
-          </h2>
-          <div className="pulse-line mx-auto mb-6 h-px bg-[#C78665] w-20" />
-          <p className="font-josefin text-[#8A7060] text-sm font-light max-w-sm mx-auto leading-relaxed mb-10">
-            Reserve your table and let us guide you through a culinary journey across continents.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="font-josefin px-10 py-4 rounded-full bg-[#C78665] text-[#140A06] text-xs font-semibold tracking-[.15em] uppercase hover:opacity-85 transition-opacity">
-              Reserve a Table
-            </button>
-            <button className="font-josefin px-10 py-4 rounded-full border border-[#3A2A1E] text-[#C4A882] text-xs font-light tracking-[.15em] uppercase hover:border-[#C78665] hover:text-[#C78665] transition-all">
-              View Full Menu
-            </button>
-          </div>
-        </div>
-      </section>
+      
 
       {/* ━━━━━━━━ VIDEO MODAL ━━━━━━━━ */}
       {videoOpen && (

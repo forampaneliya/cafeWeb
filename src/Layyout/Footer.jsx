@@ -49,7 +49,7 @@ function Footer() {
             Quick Links
           </h3>
 
-          <ul className="space-y-3 text-sm text-[#D6C7BC] flex flex-col pl-16">
+          <ul className="space-y-3 text-sm text-[#D6C7BC] flex flex-col lg:pl-16">
             {["Home", "About", "Menu", "Gallery", "Contact"].map((link, i) => (
               <li
                 key={i}
