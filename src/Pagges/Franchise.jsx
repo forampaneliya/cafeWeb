@@ -116,6 +116,44 @@ export default function Franchise() {
   const [submitted, setSubmitted] = useState(false);
   const statsRef = useRef(null);
 
+
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef(null);
+  const progressRef = useRef(null);
+
+  const startProgress = () => {
+    setProgress(0);
+    clearInterval(intervalRef.current);
+    clearInterval(progressRef.current);
+    progressRef.current = setInterval(() => {
+      setProgress((p) => {
+        if (p >= 100) {
+          clearInterval(progressRef.current);
+          return 100;
+        }
+        return p + 1;
+      });
+    }, 40);
+    intervalRef.current = setTimeout(() => {
+      setActiveStep((prev) => (prev + 1) % steps.length);
+    }, 4200);
+  };
+
+  useEffect(() => {
+    startProgress();
+    return () => {
+      clearInterval(intervalRef.current);
+      clearInterval(progressRef.current);
+    };
+  }, [activeStep]);
+
+  const handleSelect = (i) => {
+    clearInterval(intervalRef.current);
+    clearInterval(progressRef.current);
+    setActiveStep(i);
+  };
+
+
   const c0 = useCounter(40, statsOn);
   const c1 = useCounter(12, statsOn);
   const c2 = useCounter(280, statsOn);
@@ -382,71 +420,176 @@ export default function Franchise() {
       </section>
 
       {/* ━━━━━━━━ 5. HOW IT WORKS [DARK] ━━━━━━━━ */}
-      <section className="bg-[#0A0502] py-24 px-6 sm:px-10 overflow-hidden">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="font-josefin text-[#C78665] tracking-[.35em] text-[11px] uppercase mb-4">The Journey</p>
-            <h2 className="font-cormorant font-light text-[#F4EDE6] leading-tight"
-              style={{ fontSize: "clamp(32px,4vw,58px)" }}>
-              How It <em className="text-[#C78665]">Works</em>
-            </h2>
+       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Josefin+Sans:wght@300;400;600&display=swap');
+        .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+        .font-josefin   { font-family: 'Josefin Sans', sans-serif; }
+        @keyframes fadeSlideUp {
+          from { opacity: 0; transform: translateY(16px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .anim-in { animation: fadeSlideUp 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+      `}</style>
+
+      <section className="relative bg-[#0A0502] py-24 px-6 sm:px-10 overflow-hidden">
+
+        {/* Ambient radial glow */}
+        <div
+          className="pointer-events-none absolute -top-24 -right-48 w-[580px] h-[580px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(199,134,101,0.07) 0%, transparent 70%)" }}
+        />
+
+        <div className="relative max-w-5xl mx-auto">
+
+          {/* ── Header ── */}
+          <div className="mb-16">
+            <p className="font-josefin text-[#C78665] tracking-[.35em] text-[10px] uppercase mb-4">
+              The Journey
+            </p>
+
+            {/* Heading row with decorative line + diamond */}
+            <div className="flex items-center gap-6">
+              <h2
+                className="font-cormorant font-light text-[#F4EDE6] whitespace-nowrap leading-tight"
+                style={{ fontSize: "clamp(34px, 4.5vw, 60px)" }}
+              >
+                How It{" "}
+                <em className="text-[#C78665]" style={{ fontStyle: "italic" }}>Works</em>
+              </h2>
+              <div
+                className="flex-1 h-px"
+                style={{ background: "linear-gradient(to right, #2A1A10, transparent)" }}
+              />
+              <div className="w-1.5 h-1.5 bg-[#C78665] rotate-45 flex-shrink-0" />
+            </div>
           </div>
 
-          <div className="grid lg:grid-cols-[1fr_1.4fr] gap-12 items-start">
-            {/* Step selector */}
-            <div className="space-y-3">
+          {/* ── Body grid ── */}
+          <div className="grid lg:grid-cols-[1fr_1.55fr] gap-12 items-start">
+
+            {/* ── Left: Vertical timeline ── */}
+            <div className="pt-2">
               {steps.map((s, i) => (
-                <button
+                <div
                   key={i}
-                  onClick={() => setActiveStep(i)}
-                  className={`w-full text-left px-6 py-4 rounded-xl border transition-all duration-300 flex items-center gap-4
-                    ${activeStep === i
-                      ? "bg-[#140A06] border-[#C78665]/50 shadow-lg"
-                      : "bg-transparent border-[#1A0E08] hover:border-[#C78665]/20"
-                    }`}
+                  className="flex items-stretch gap-5 cursor-pointer"
+                  onClick={() => handleSelect(i)}
                 >
-                  <span className="font-cormorant text-3xl font-light flex-shrink-0"
-                    style={{ color: activeStep === i ? "#C78665" : "#3A2A1E" }}>
-                    {s.num}
-                  </span>
-                  <div>
-                    <p className="font-josefin text-xs font-semibold uppercase tracking-wide"
-                      style={{ color: activeStep === i ? "#F4EDE6" : "#8A7060" }}>
+                  {/* Timeline column: dot + connector */}
+                  <div className="flex flex-col items-center w-px flex-shrink-0">
+                    <div
+                      className={`w-2.5 h-2.5 rounded-full flex-shrink-0 -ml-[4px] border transition-all duration-300 ${
+                        activeStep === i
+                          ? "border-[#C78665] bg-[#C78665] shadow-[0_0_10px_rgba(199,134,101,0.5)]"
+                          : "border-[#3A2A1E] bg-transparent"
+                      }`}
+                    />
+                    {i < steps.length - 1 && (
+                      <div
+                        className="flex-1 w-px mt-1.5"
+                        style={{
+                          background:
+                            activeStep === i
+                              ? "linear-gradient(to bottom, #C78665, #1A0E08)"
+                              : "#1A0E08",
+                        }}
+                      />
+                    )}
+                  </div>
+
+                  {/* Step text */}
+                  <div className="pb-8 flex-1 min-w-0">
+                    <p
+                      className={`font-cormorant text-[11px] tracking-[.2em] mb-1 transition-colors duration-300 ${
+                        activeStep === i ? "text-[#C78665]" : "text-[#3A2A1E]"
+                      }`}
+                    >
+                      {s.num}
+                    </p>
+                    <p
+                      className={`font-josefin text-[12px] font-semibold uppercase tracking-[.12em] transition-colors duration-300 ${
+                        activeStep === i ? "text-[#F4EDE6]" : "text-[#4A3A2E]"
+                      }`}
+                    >
                       {s.title}
                     </p>
-                    {/* Progress bar */}
+
+                    {/* Auto-advance progress bar */}
                     {activeStep === i && (
-                      <div className="mt-2 h-0.5 bg-[#2A1A10] rounded-full w-full overflow-hidden">
-                        <div className="step-bar h-full bg-[#C78665] rounded-full w-full" />
+                      <div className="mt-2 h-px w-20 bg-[#1A0E08] rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-[#C78665] rounded-full"
+                          style={{ width: `${progress}%`, transition: "none" }}
+                        />
                       </div>
                     )}
                   </div>
-                </button>
+                </div>
               ))}
             </div>
 
-            {/* Active step detail */}
-            <div key={activeStep} className="t-anim">
-              <div className="relative bg-[#140A06] border border-[#2A1A10] rounded-2xl p-10 overflow-hidden">
-                <div className="absolute top-0 right-0 w-40 h-40 border-b border-l border-[#C78665]/8 rounded-bl-full" />
-                <p className="font-cormorant text-[100px] font-light text-[#C78665]/10 leading-none -mt-4 mb-2">
-                  {steps[activeStep].num}
-                </p>
-                <h3 className="font-cormorant text-3xl text-[#F4EDE6] font-semibold mb-4">
+            {/* ── Right: Detail card ── */}
+            <div
+              key={activeStep}
+              className="anim-in relative bg-[#140A06] border border-[#2A1A10] rounded-sm overflow-hidden"
+            >
+              {/* Top shimmer line */}
+              <div
+                className="absolute top-0 left-0 right-0 h-px"
+                style={{ background: "linear-gradient(to right, transparent, #C78665, transparent)" }}
+              />
+
+              {/* Ghost oversized number */}
+              <span
+                className="font-cormorant absolute top-0 right-5 leading-none select-none pointer-events-none font-bold"
+                style={{
+                  fontSize: 130,
+                  color: "transparent",
+                  WebkitTextStroke: "1px rgba(199,134,101,0.07)",
+                }}
+              >
+                {steps[activeStep].num}
+              </span>
+
+              <div className="relative px-10 py-12">
+                {/* Step tag */}
+                <span className="font-josefin text-[9px] tracking-[.4em] uppercase text-[#C78665] block mb-4">
+                  Step {steps[activeStep].num}
+                </span>
+
+                {/* Title */}
+                <h3
+                  className="font-cormorant font-light text-[#F4EDE6] leading-tight mb-5"
+                  style={{ fontSize: "clamp(28px, 3vw, 44px)" }}
+                >
                   {steps[activeStep].title}
                 </h3>
-                <p className="font-josefin text-[#8A7060] text-sm font-light leading-relaxed mb-8">
+
+                {/* Description */}
+                <p className="font-josefin text-[#6A5A4E] text-[13px] font-light leading-[1.9] mb-10 max-w-sm">
                   {steps[activeStep].desc}
                 </p>
-                <div className="flex gap-2">
+
+                {/* Navigation dots */}
+                <div className="flex items-center gap-2">
                   {steps.map((_, i) => (
-                    <div key={i} onClick={() => setActiveStep(i)}
-                      className="h-1 rounded-full cursor-pointer transition-all duration-300"
-                      style={{ width: i === activeStep ? 28 : 8, background: i === activeStep ? "#C78665" : "#2A1A10" }} />
+                    <div
+                      key={i}
+                      onClick={() => handleSelect(i)}
+                      className="h-[3px] rounded-full cursor-pointer transition-all duration-300"
+                      style={{
+                        width: i === activeStep ? 28 : 8,
+                        background: i === activeStep ? "#C78665" : "#2A1A10",
+                      }}
+                    />
                   ))}
                 </div>
               </div>
+
+              {/* Bottom-right corner ornament */}
+              <div className="absolute bottom-0 right-0 w-28 h-28 border-t border-l border-[#C78665]/[0.05] rounded-tl-full pointer-events-none" />
             </div>
+
           </div>
         </div>
       </section>
