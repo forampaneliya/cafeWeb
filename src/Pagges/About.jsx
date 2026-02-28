@@ -263,7 +263,7 @@ export default function About() {
       `}</style>
 
       {/* ━━━━━━━━ 1. HERO [DARK] ━━━━━━━━ */}
-      <section className="relative h-[900px] flex items-center justify-center overflow-hidden bg-[#F4EDE6] pt-10 md:pt-10 lg:pt-20 xl:pt-0">
+      <section className="relative h-[900px] flex items-center justify-center overflow-hidden bg-[#F4EDE6]  md:pt-10 lg:pt-20 xl:pt-0">
         {/* BG */}
        <img
            src={bannerImg}
@@ -278,7 +278,7 @@ export default function About() {
   <div className="hidden md:block absolute bottom-50 right-80 w-16 h-16 border-b border-r border-[#C78665]/40 z-10" />
 
         {/* Content */}
-        <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 py-24 sm:py-32 flex items-center justify-center">
+        <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20  xl:py-24 md:py-20  flex items-center justify-center">
           <div className="w-full max-w-2xl text-center mx-auto">
             <p className="font-josefin text-[#C78665] tracking-[.4em] text-[10px] sm:text-[11px] uppercase mb-5">
               Our Story · Cafechino
