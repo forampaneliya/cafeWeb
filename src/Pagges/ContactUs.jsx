@@ -4,6 +4,7 @@ import {
   Instagram, Twitter, Facebook, ChevronDown,
   Star, ArrowRight, MessageCircle
 } from "lucide-react";
+import bannerImg from "../assets/images/contactusbanner.png";
 
 /* ═══════════════════ DATA ═══════════════════ */
 
@@ -152,71 +153,52 @@ export default function ContactUs() {
       `}</style>
 
       {/* ━━━━━━━━ 1. HERO [DARK] ━━━━━━━━ */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-[#0A0502]">
+      <section className="relative h-[800px] flex items-center justify-center overflow-hidden bg-[#f4efe9]">
         {/* BG image */}
-        <div className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: "url(https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=85)" }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0502]/95 via-[#0A0502]/70 to-[#0A0502]/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0502] via-transparent to-[#0A0502]/50" />
-
-        {/* Rotating ring */}
-        <div className="hidden lg:block absolute right-16 top-1/2 -translate-y-1/2 w-[400px] h-[400px] pointer-events-none">
-          <div className="spin-slow-el w-full h-full rounded-full border border-[#C78665]/15" />
-          <div className="absolute inset-10 rounded-full border-2 border-dashed border-[#C78665]/10" />
-          <div className="absolute inset-24 rounded-full border border-[#C78665]/20" />
-        </div>
+        <img
+                 src={bannerImg}
+                 alt="Menu Banner"
+                 className="absolute inset-0 w-full h-[800px] object-cover"
+               />
 
         {/* Corner accents */}
-        <div className="hidden md:block absolute top-28 left-10 w-16 h-16 border-t border-l border-[#C78665]/40" />
-        <div className="hidden md:block absolute bottom-10 right-10 w-16 h-16 border-b border-r border-[#C78665]/40" />
-
-        {/* Live chat bubble floating */}
-        <div className="hidden xl:flex absolute right-[14%] top-[38%] float-el items-center gap-3 bg-[#140A06]/90 border border-[#C78665]/25 rounded-2xl px-5 py-4 backdrop-blur-sm">
-          <div className="relative">
-            <div className="ping-dot relative w-3 h-3 rounded-full bg-green-400" />
-          </div>
-          <div>
-            <p className="font-josefin text-[10px] text-[#C78665] uppercase tracking-wide">We're Online</p>
-            <p className="font-cormorant text-[#F4EDE6] text-base">Avg. reply in &lt; 2 hrs</p>
-          </div>
-        </div>
-
-        {/* Response time badge */}
-        <div className="hidden xl:flex absolute right-[10%] bottom-[28%] float-el flex-col items-center bg-[#C78665] rounded-2xl px-5 py-4 shadow-xl"
-          style={{ animationDelay: ".8s" }}>
-          <p className="font-cormorant text-[#140A06] text-3xl font-light leading-none">98%</p>
-          <p className="font-josefin text-[#140A06] text-[9px] uppercase tracking-wider mt-1">Satisfaction</p>
-        </div>
+                <div className="hidden md:block absolute top-40 left-90 w-16 h-16 border-t border-l border-[#C78665]/40 z-10" />
+        <div className="hidden md:block absolute bottom-50 right-80 w-16 h-16 border-b border-r border-[#C78665]/40 z-10" />
 
         {/* Content */}
-        <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 pt-32 pb-20">
-          <div className="max-w-xl">
-            <p className="font-josefin fu1 text-[#C78665] tracking-[.4em] text-[10px] sm:text-[11px] uppercase mb-5">
+        <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 py-24 flex items-center justify-center">
+          <div className="w-full max-w-2xl text-center mx-auto">
+            <p className="font-josefin text-[#C78665] tracking-[.4em] text-[10px] sm:text-[11px] uppercase mb-5">
               Get In Touch · Cafechino
             </p>
-            <h1 className="font-cormorant fu2 font-light text-[#F4EDE6] leading-[1.05] mb-6"
-              style={{ fontSize: "clamp(42px,7vw,88px)" }}>
+           <h1
+              className="font-cormorant font-light text-[#F4EDE6] leading-[1.05] mb-6"
+              style={{ fontSize: "clamp(36px, 7vw, 70px)" }}
+            >
               We'd Love to<br />
               <em className="text-[#C78665]">Hear From You</em>
             </h1>
-            <div className="fu3 h-px bg-[#C78665] w-20 mb-6 pulse-line" />
-            <p className="font-josefin fu3 text-[#C4A882] text-sm font-light leading-relaxed max-w-md mb-10">
+            <div className="h-px bg-[#C78665] w-24 mb-6 mx-auto" />
+            <p className="font-josefin text-[#C4A882] text-sm font-light leading-relaxed max-w-md mb-10 mx-auto">
               Whether it's a reservation, a catering enquiry, feedback, or just a hello — our team is ready and waiting. Reach out the way that works best for you.
             </p>
-            <div className="fu4 flex flex-col sm:flex-row gap-4">
-              <button className="shimmer-btn font-josefin px-9 py-4 rounded-full text-[#140A06] text-xs font-semibold tracking-[.15em] uppercase">
-                Send a Message
+             <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
+
+              <button className="font-josefin w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#C78665] text-[#140A06] text-xs font-semibold tracking-[.15em] uppercase hover:opacity-85 transition-opacity">
+                View Full Menu
               </button>
-              <button className="font-josefin flex items-center justify-center gap-2 px-9 py-4 rounded-full border border-[#C78665]/40 text-[#F4EDE6] text-xs font-light tracking-[.15em] uppercase hover:border-[#C78665] hover:text-[#C78665] transition-all">
-                <Phone size={13} /> Call Now
+
+              <button className="font-josefin px-8 py-3.5 rounded-full border border-[#C78665]/40 text-[#F4EDE6] text-xs font-light tracking-[.15em] uppercase hover:border-[#C78665] hover:text-[#C78665] transition-all duration-300">
+                Book a Table
               </button>
+
             </div>
           </div>
         </div>
       </section>
 
       {/* ━━━━━━━━ 2. QUICK STATS [LIGHT] ━━━━━━━━ */}
-      <section ref={statsRef} className="bg-[#F4EDE6] py-14 px-6 border-b border-[#E0D0C4]">
+      <section ref={statsRef} className="bg-[#F4EDE6] pb-14 px-6 border-b border-[#E0D0C4]">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
             <div key={i} className={`si`} style={{ animationDelay: `${i * 0.1}s` }}>
@@ -241,8 +223,16 @@ export default function ContactUs() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {contactInfo.map((item, i) => (
-              <div key={i}
-                className="info-card group bg-[#0A0502] border border-[#2A1A10] hover:border-[#C78665]/40 rounded-2xl p-7 cursor-default hover:shadow-[0_20px_60px_rgba(0,0,0,.5)]">
+              <div
+  key={i}
+  className="info-card group border border-[#C78665]/20 hover:border-[#C78665]/50 rounded-2xl p-7 cursor-default transition-all duration-300 hover:shadow-[0_20px_60px_rgba(199,134,101,0.1)]"
+  style={{
+    background: "linear-gradient(135deg, rgba(199,134,101,0.08) 0%, rgba(255,255,255,0.03) 100%)",
+    backdropFilter: "blur(16px)",
+    WebkitBackdropFilter: "blur(16px)",
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.3)",
+  }}
+>
                 <div className="w-12 h-12 rounded-xl bg-[#C78665]/10 border border-[#C78665]/20 flex items-center justify-center mb-6 group-hover:bg-[#C78665]/20 transition-colors">
                   <item.icon size={20} className="text-[#C78665]" />
                 </div>
