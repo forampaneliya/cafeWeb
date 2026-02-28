@@ -4,6 +4,7 @@ import {
   MapPin, TrendingUp, Shield, Users, Star, Clock,
   DollarSign, Globe, Award, Phone, Mail, ChevronDown, X
 } from "lucide-react";
+import bannerImg from "../assets/images/franchisebanner.png";
 
 /* ═══════════════════ DATA ═══════════════════ */
 
@@ -203,74 +204,66 @@ export default function Franchise() {
       `}</style>
 
       {/* ━━━━━━━━ 1. HERO [DARK] ━━━━━━━━ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0A0502]">
-        {/* BG */}
-        <div className="absolute inset-0 bg-cover bg-center opacity-25"
-          style={{ backgroundImage: "url(https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1600&q=85)" }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0502]/95 via-[#0A0502]/75 to-[#0A0502]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0502] via-transparent to-[#0A0502]/50" />
+      {/* <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0A0502]"> */}
+    <section className="relative h-[800px] flex items-center justify-center overflow-hidden bg-[#F4EDE6]">
 
-        {/* Rotating ring */}
-        <div className="hidden lg:block absolute right-20 top-1/2 -translate-y-1/2 w-[440px] h-[440px] pointer-events-none">
-          <div className="spin-slow w-full h-full rounded-full border border-[#C78665]/15" />
-          <div className="absolute inset-10 rounded-full border-2 border-dashed border-[#C78665]/10" />
-          <div className="absolute inset-24 rounded-full border border-[#C78665]/20" />
-        </div>
+  {/* Background Image */}
+  <img
+    src={bannerImg}
+    alt="Menu Banner"
+    className="absolute inset-0 w-full h-[800px] object-cover"
+  />
 
-        {/* Corner accents */}
-        <div className="hidden md:block absolute top-28 left-10 w-16 h-16 border-t border-l border-[#C78665]/40" />
-        <div className="hidden md:block absolute bottom-10 right-10 w-16 h-16 border-b border-r border-[#C78665]/40" />
+  {/* Dark Overlay (Important for readability) */}
+  {/* <div className="absolute inset-0 bg-black/60"></div> */}
 
-        {/* Content */}
-        <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 pt-32 pb-20">
-          <div className="max-w-2xl">
-            <p className="font-josefin fu1 text-[#C78665] tracking-[.4em] text-[10px] sm:text-[11px] uppercase mb-5">
-              Partner With Us · Cafechino Franchise
-            </p>
-            <h1 className="font-cormorant fu2 font-light text-[#F4EDE6] leading-[1.05] mb-6"
-              style={{ fontSize: "clamp(40px,7vw,88px)" }}>
-              Own a Piece of<br />
-              <em className="text-[#C78665]">Culinary History</em>
-            </h1>
-            <div className="fu3 h-px bg-[#C78665] w-24 mb-6 pulse-line" />
-            <p className="font-josefin fu3 text-[#C4A882] text-sm font-light leading-relaxed max-w-lg mb-10">
-              Join a Michelin-recognised brand bringing world cuisines under one roof. With proven systems, dedicated support, and a menu guests fall in love with — your success is our mission.
-            </p>
+  {/* Corner accents */}
+  <div className="hidden md:block absolute top-40 left-90 w-16 h-16 border-t border-l border-[#C78665]/40 z-10" />
+  <div className="hidden md:block absolute bottom-50 right-80 w-16 h-16 border-b border-r border-[#C78665]/40 z-10" />
 
-            {/* Quick highlights */}
-            <div className="fu3 flex flex-wrap gap-3 mb-10">
-              {["Low 4% Royalty", "6-Week Training", "280% Avg ROI", "12 Countries"].map((tag, i) => (
-                <span key={i} className="font-josefin text-[10px] tracking-[.15em] uppercase border border-[#C78665]/30 text-[#C78665] px-4 py-1.5 rounded-full">
-                  {tag}
-                </span>
-              ))}
-            </div>
+  {/* Content Wrapper */}
+  <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 py-24 sm:py-30 flex items-center justify-center">
 
-            <div className="fu4 flex flex-col sm:flex-row gap-4">
-              <button className="shimmer-btn font-josefin px-9 py-4 rounded-full text-[#140A06] text-xs font-semibold tracking-[.15em] uppercase">
+    {/* Centered Content */}
+    <div className="w-full max-w-2xl text-center mx-auto">
+
+      <p className="font-josefin text-[#C78665] tracking-[.4em] text-[10px] sm:text-[11px] uppercase mb-5">
+        Partner With Us · Cafechino Franchise
+      </p>
+
+      <h1
+        className="font-cormorant font-light text-[#F4EDE6] leading-[1.05] mb-6"
+         style={{ fontSize: "clamp(36px, 7vw, 70px)" }}
+      >
+        Own a Piece of<br />
+        <em className="text-[#C78665]">Culinary History</em>
+      </h1>
+
+      <div className="h-px bg-[#C78665] w-24 mb-6 mx-auto" />
+
+      <p className="font-josefin text-[#C4A882] text-sm font-light leading-relaxed max-w-md mb-10 mx-auto">
+        Join a Michelin-recognised brand bringing world cuisines under one roof.
+        With proven systems, dedicated support, and a menu guests fall in love with —
+        your success is our mission.
+      </p>
+
+      <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
+       <button className="font-josefin w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#C78665] text-[#140A06] text-xs font-semibold tracking-[.15em] uppercase hover:opacity-85 transition-opacity">
                 Apply Now
               </button>
-              <button className="font-josefin flex items-center justify-center gap-2 px-9 py-4 rounded-full border border-[#C78665]/40 text-[#F4EDE6] text-xs font-light tracking-[.15em] uppercase hover:border-[#C78665] hover:text-[#C78665] transition-all">
-                Download Brochure <ArrowRight size={13} />
-              </button>
-            </div>
-          </div>
 
-          {/* Floating stat cards */}
-          <div className="hidden xl:flex absolute right-[12%] bottom-20 gap-4">
-            {[{ n: "40+", l: "Locations" }, { n: "$45K", l: "Starting From" }, { n: "4%", l: "Royalty" }].map((b, i) => (
-              <div key={i} className="float-el bg-[#140A06]/80 border border-[#C78665]/25 rounded-2xl px-5 py-4 text-center backdrop-blur-sm"
-                style={{ animationDelay: `${i * 0.7}s` }}>
-                <p className="font-cormorant text-2xl text-[#C78665] font-light">{b.n}</p>
-                <p className="font-josefin text-[9px] text-[#8A7060] uppercase tracking-wider mt-1">{b.l}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        <button className="font-josefin px-9 py-4 rounded-full border border-[#C78665]/40 text-[#F4EDE6] text-xs font-light tracking-[.15em] uppercase hover:border-[#C78665] hover:text-[#C78665] transition-all duration-300">
+          Download Brochure
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
       {/* ━━━━━━━━ 2. STATS [LIGHT] ━━━━━━━━ */}
-      <section ref={statsRef} className="bg-[#F4EDE6] py-16 px-6 border-b border-[#E0D0C4]">
+      <section ref={statsRef} className="bg-[#F4EDE6] pb-16 px-6 border-b border-[#E0D0C4]">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
             <div key={i} className="si" style={{ animationDelay: `${i * 0.1}s` }}>
