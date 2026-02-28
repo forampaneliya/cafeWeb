@@ -308,12 +308,12 @@ const dishes = [
         <img
           src={slide.img}
           alt=""
-          className="hero-img w-full h-full object-cover"
+          className="hero-img w-full h-[100vh] object-cover"
         />
 
         {/* Overlays */}
         <div className="absolute inset-0 bg-black/40"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t h-full from-black/70 via-black/40 to-black/10"></div>
 
         {/* Content */}
         <div className="absolute inset-0 flex items-center justify-center 
@@ -379,122 +379,114 @@ const dishes = [
 </section>
 
 
-      <section className="bg-[#140A06] text-[#F4EDE6] py-28 px-6">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+      <section className="bg-[#140A06] text-[#F4EDE6] py-16 md:py-20 lg:py-28 px-4 sm:px-6">
+  <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-20 items-center">
 
-          {/* LEFT IMAGE SECTION */}
-          <div className="relative flex justify-center">
-            {/* Oval Image */}
-            <div className="w-[320px] h-[420px] md:w-[380px] md:h-[500px] rounded-[180px] overflow-hidden shadow-2xl">
-              <img
-                src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5"
-                alt="Cafe Interior"
-                className="w-full h-full object-cover"
-              />
-            </div>
+    {/* LEFT IMAGE SECTION */}
+    <div className="relative flex justify-center order-1 md:order-none">
+      {/* Oval Image */}
+      <div className="w-[280px] h-[360px] sm:w-[300px] sm:h-[400px] md:w-[450px] md:h-[500px] lg:w-[380px] lg:h-[500px] rounded-[140px] sm:rounded-[160px] md:rounded-[180px] overflow-hidden shadow-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5"
+          alt="Cafe Interior"
+          className="w-full h-full object-cover"
+        />
+      </div>
 
-            {/* Experience Badge */}
-            <div className="absolute top-10 -right-6 bg-[#C78665] text-[#140A06] px-6 py-4 rounded-2xl shadow-xl text-center">
-              <p className="text-2xl font-semibold">Since 2025</p>
-              <p className="text-sm tracking-wide">Crafting Coffee & Moments</p>
-            </div>
+      {/* Experience Badge */}
+      <div className="absolute top-5 sm:top-8 md:top-10 -right-3 sm:-right-4 md:-right-6 bg-[#C78665] text-[#140A06] px-4 sm:px-5 md:px-6 py-2 sm:py-3 md:py-4 rounded-xl md:rounded-2xl shadow-xl text-center">
+        <p className="text-lg sm:text-xl md:text-2xl font-semibold">Since 2025</p>
+        <p className="text-[10px] sm:text-xs md:text-sm tracking-wide">Crafting Coffee & Moments</p>
+      </div>
 
-            {/* Small Avatar */}
-            <div className="absolute bottom-10 left-15 w-25 h-25 rounded-full overflow-hidden border-2 border-[#C78665]">
-              <img
-                src="https://images.unsplash.com/photo-1527980965255-d3b416303d12"
-                alt="Our Barista"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
+      {/* Small Avatar */}
+      <div className="absolute bottom-8 sm:bottom-10 left-5 sm:left-10 md:left-15 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-25 lg:h-25 rounded-full overflow-hidden border-2 border-[#C78665]">
+        <img
+          src="https://images.unsplash.com/photo-1527980965255-d3b416303d12"
+          alt="Our Barista"
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </div>
 
-          {/* RIGHT CONTENT */}
-          <div>
-            <p className="text-[#C78665] uppercase tracking-[0.3em] text-sm mb-4">
-              About Our Cafe
-            </p>
+    {/* RIGHT CONTENT */}
+    <div className="order-2 md:order-none">
+      <p className="text-[#C78665] uppercase tracking-[0.3em] text-xs sm:text-sm mb-3 md:mb-4">
+        About Our Cafe
+      </p>
 
-            <h2 className="text-4xl md:text-5xl font-serif leading-tight mb-6">
-              Crafted With Passion, <br /> Served With Heart
-            </h2>
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif leading-tight mb-4 md:mb-6">
+        Crafted With Passion, <br /> Served With Heart
+      </h2>
 
-            <p className="text-[#D6C7BC] text-lg mb-8 max-w-xl">
-              Our cafe is more than just a place for coffee — it’s a space where
-              flavors, conversations, and comfort come together. Every cup and
-              every dish is prepared with care, quality ingredients, and a love
-              for creating memorable moments.
-            </p>
+      <p className="text-[#D6C7BC] text-base sm:text-lg mb-6 md:mb-8 max-w-xl">
+        Our cafe is more than just a place for coffee — it’s a space where
+        flavors, conversations, and comfort come together. Every cup and
+        every dish is prepared with care, quality ingredients, and a love
+        for creating memorable moments.
+      </p>
 
-            {/* Bullet Points */}
-            <ul className="space-y-4 mb-10">
-              <li className="flex items-center gap-3">
-                <ChevronRightIcon className="w-4 h-4 text-[#C78665]" />
+      {/* Bullet Points */}
+      <ul className="space-y-3 md:space-y-4 mb-8 md:mb-10">
+        <li className="flex items-center gap-2 md:gap-3 text-sm sm:text-base">
+          <ChevronRightIcon className="w-3 h-3 sm:w-4 sm:h-4 text-[#C78665] flex-shrink-0" />
+          <span>Freshly Brewed Coffee & Handcrafted Beverages</span>
+        </li>
+        <li className="flex items-center gap-2 md:gap-3 text-sm sm:text-base">
+          <ChevronRightIcon className="w-3 h-3 sm:w-4 sm:h-4 text-[#C78665] flex-shrink-0" />
+          <span>House-Made Desserts & Comfort Savories</span>
+        </li>
+        <li className="flex items-center gap-2 md:gap-3 text-sm sm:text-base">
+          <ChevronRightIcon className="w-3 h-3 sm:w-4 sm:h-4 text-[#C78665] flex-shrink-0" />
+          <span>Warm Ambience for Work, Friends & Relaxation</span>
+        </li>
+      </ul>
 
-                Freshly Brewed Coffee & Handcrafted Beverages
-              </li>
-              <li className="flex items-center gap-3">
-                <ChevronRightIcon className="w-4 h-4 text-[#C78665]" />
+      {/* Buttons */}
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+        {/* Explore Menu */}
+        <button
+          className="relative overflow-hidden px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium text-sm sm:text-base
+            bg-[#C78665] text-white group w-full sm:w-auto"
+        >
+          {/* Hover Layer */}
+          <span
+            className="absolute inset-0 bg-white translate-y-full
+              group-hover:translate-y-0 transition-transform duration-300 ease-out"
+          ></span>
 
-                House-Made Desserts & Comfort Savories
-              </li>
-              <li className="flex items-center gap-3">
-                <ChevronRightIcon className="w-4 h-4 text-[#C78665]" />
+          {/* Text */}
+          <span
+            className="relative z-10 group-hover:text-[#C78665]
+              transition-colors duration-300"
+          >
+            Explore Menu
+          </span>
+        </button>
 
-                Warm Ambience for Work, Friends & Relaxation
-              </li>
-            </ul>
+        {/* Visit Our Cafe */}
+        <button
+          className="relative overflow-hidden px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium text-sm sm:text-base
+            border border-[#D6C7BC] text-[#F4EDE6] group w-full sm:w-auto"
+        >
+          {/* Hover Layer */}
+          <span
+            className="absolute inset-0 bg-white translate-y-full
+              group-hover:translate-y-0 transition-transform duration-300 ease-out"
+          ></span>
 
-            {/* Buttons */}
-            <div className="flex gap-4">
-
-              {/* Explore Menu */}
-              <button
-                className="relative overflow-hidden px-8 py-3 rounded-full font-medium
-      bg-[#C78665] text-white group"
-              >
-                {/* Hover Layer */}
-                <span
-                  className="absolute inset-0 bg-white translate-y-full
-        group-hover:translate-y-0 transition-transform duration-300 ease-out"
-                ></span>
-
-                {/* Text */}
-                <span
-                  className="relative z-10 group-hover:text-[#C78665]
-        transition-colors duration-300"
-                >
-                  Explore Menu
-                </span>
-              </button>
-
-              {/* Visit Our Cafe */}
-              <button
-                className="relative overflow-hidden px-8 py-3 rounded-full font-medium
-      border border-[#D6C7BC] text-[#F4EDE6] group"
-              >
-                {/* Hover Layer */}
-                <span
-                  className="absolute inset-0 bg-white translate-y-full
-        group-hover:translate-y-0 transition-transform duration-300 ease-out"
-                ></span>
-
-                {/* Text */}
-                <span
-                  className="relative z-10 group-hover:text-[#C78665]
-        transition-colors duration-300"
-                >
-                  Visit Our Cafe
-                </span>
-              </button>
-
-            </div>
-
-
-          </div>
-
-        </div>
-      </section>
+          {/* Text */}
+          <span
+            className="relative z-10 group-hover:text-[#C78665]
+              transition-colors duration-300"
+          >
+            Visit Our Cafe
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
       <section className="bg-[#F4EDE6] py-16 sm:py-20 md:py-24 px-4 sm:px-6 overflow-hidden relative">
 
   {/* Animation Styles */}
@@ -599,76 +591,77 @@ const dishes = [
       {/* SCROLL SECTION */}
       <section className="bg-[#140A06] text-[#F4EDE6]">
 
-        {/* HEADING (NORMAL SCROLL) */}
-        <div className="pt-15 px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-[#C78665] tracking-[0.4em] uppercase text-sm">
-              Not Our Menu — Our Identity
+  {/* HEADING (NORMAL SCROLL) */}
+  <div className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 px-4 sm:px-6">
+    <div className="max-w-4xl mx-auto text-center">
+      <p className="text-[#C78665] tracking-[0.4em] uppercase text-xs sm:text-sm">
+        Not Our Menu — Our Identity
+      </p>
+      <h2 className="mt-4 sm:mt-5 md:mt-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif">
+        These Dishes <br className="hidden sm:block" /> Built Our Cafe
+      </h2>
+      <p className=" text-base sm:text-lg text-[#D6C7BC]">
+        People don’t remember tables. They remember flavors.
+      </p>
+    </div>
+  </div>
+
+  {/* SCROLL SPACE */}
+  <div className="relative h-[400vh]">
+
+    {/* STICKY CONTENT */}
+    <div className="sticky top-0 h-screen flex items-center px-4 sm:px-6">
+      <div className="max-w-4xl mx-auto w-full">
+
+        {/* STATIC DESIGN */}
+        <div className="grid grid-cols-1 md:grid-cols-[auto_1px_1fr] gap-6 sm:gap-8 md:gap-10 items-center overflow-hidden">
+
+          {/* IMAGE */}
+          <img
+            key={`img-${activeIndex}`}
+            src={items[activeIndex].img}
+            alt=""
+            className="
+              w-[320px] h-[320px] sm:w-[260px] sm:h-[260px] md:w-[280px] md:h-[280px] lg:w-[300px] lg:h-[300px] 
+              object-cover rounded-2xl shadow-2xl mx-auto
+              animate-flip-in
+            "
+          />
+
+          {/* VERTICAL LINE */}
+          <div className="hidden md:block h-[180px] sm:h-[200px] md:h-[220px] w-[1px] bg-[#C78665]" />
+
+          {/* CONTENT */}
+          <div
+            key={`text-${activeIndex}`}
+            className="text-center md:text-left animate-flip-in"
+          >
+            <h3 className="text-2xl sm:text-3xl font-serif text-[#C78665]">
+              {items[activeIndex].title}
+            </h3>
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-[#E4D6CB]">
+              {items[activeIndex].desc1}
             </p>
-            <h2 className="mt-6 text-5xl md:text-6xl font-serif">
-              These Dishes <br /> Built Our Cafe
-            </h2>
-            <p className="mt-6 text-lg text-[#D6C7BC]">
-              People don’t remember tables. They remember flavors.
+            <p className="mt-2 sm:mt-3 text-xs sm:text-sm md:text-base text-[#CFC0B6]">
+              {items[activeIndex].desc2}
             </p>
           </div>
+
         </div>
+      </div>
+    </div>
 
-        {/* SCROLL SPACE */}
-        <div className="relative h-[400vh]">
-
-          {/* STICKY CONTENT */}
-          <div className="sticky top-0 h-screen flex items-center px-6">
-            <div className="max-w-4xl mx-auto w-full">
-
-              {/* STATIC DESIGN */}
-              <div className="grid md:grid-cols-[auto_1px_1fr] gap-10 items-center overflow-hidden">
-
-                {/* IMAGE */}
-                <img
-                  key={`img-${activeIndex}`}
-                  src={items[activeIndex].img}
-                  alt=""
-                  className="
-                  w-[300px] h-[300px] object-cover rounded-2xl shadow-2xl mx-auto
-                  animate-flip-in
-                "
-                />
-
-                {/* VERTICAL LINE */}
-                <div className="hidden md:block h-[220px] w-[1px] bg-[#C78665]" />
-
-                {/* CONTENT */}
-                <div
-                  key={`text-${activeIndex}`}
-                  className="animate-flip-in"
-                >
-                  <h3 className="text-3xl font-serif text-[#C78665]">
-                    {items[activeIndex].title}
-                  </h3>
-                  <p className="mt-4 text-lg text-[#E4D6CB]">
-                    {items[activeIndex].desc1}
-                  </p>
-                  <p className="mt-3 text-base text-[#CFC0B6]">
-                    {items[activeIndex].desc2}
-                  </p>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          {/* SCROLL TRIGGERS */}
-          {items.map((_, i) => (
-            <div
-              key={i}
-              ref={(el) => (triggersRef.current[i] = el)}
-              data-index={i}
-              className="h-screen"
-            />
-          ))}
-        </div>
-      </section>
+    {/* SCROLL TRIGGERS */}
+    {items.map((_, i) => (
+      <div
+        key={i}
+        ref={(el) => (triggersRef.current[i] = el)}
+        data-index={i}
+        className="h-screen"
+      />
+    ))}
+  </div>
+</section>
 
     <section className="relative bg-[#0d0d0d] min-h-screen flex items-center justify-center px-5 py-10 overflow-hidden">
 
