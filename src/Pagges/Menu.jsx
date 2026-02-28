@@ -137,39 +137,68 @@ function Menu() {
 
     <>
 
-      <section className="relative w-full h-full overflow-hidden ">
+     <section className="relative h-[800px] flex items-center justify-center overflow-hidden bg-[#f4efe9]">
 
-        {/* Background Image */}
-        <img
-          src={bannerImg}
-          alt="Menu Banner"
-          className="w-full h-full object-cover"
-        />
+  {/* Background Image */}
+  <img
+    src={bannerImg}
+    alt="Menu Banner"
+    className="absolute inset-0 w-full h-full object-cover"
+  />
 
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 "></div>
+  {/* Dark Overlay for readability */}
+  {/* <div className="absolute inset-0 bg-black/60"></div> */}
 
-        {/* Content */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-wide mb-4">
-            Our Menu
-          </h1>
-          <div className="max-w-4xl mb-4">
-            <p>Explore a carefully curated selection of dishes made with passion and precision. Whether you're craving something comforting or something indulgent, our menu offers a delightful experience crafted to satisfy every taste.</p>
-          </div>
+  {/* Corner accents (same as franchise for consistency) */}
+  <div className="hidden md:block absolute top-40 left-90 w-16 h-16 border-t border-l border-[#C78665]/40 z-10" />
+  <div className="hidden md:block absolute bottom-50 right-80 w-16 h-16 border-b border-r border-[#C78665]/40 z-10" />
 
-          <div className="flex items-center gap-2 text-sm md:text-base text-gray-200">
-            <span className="hover:text-[#C78665] cursor-pointer transition">
-              Home
-            </span>
-            <span>|</span>
-            <span className="text-[#FCE779]">Menu</span>
-          </div>
-        </div>
+  {/* Content Wrapper */}
+  <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 py-24 flex items-center justify-center">
 
-        {/* Bottom Wave Shape */}
+    {/* Centered Content */}
+    <div className="w-full max-w-2xl text-center mx-auto">
 
-      </section>
+      {/* Small Top Label */}
+      <p className="font-josefin text-[#C78665] tracking-[.4em] text-[10px] sm:text-[11px] uppercase mb-5">
+        Discover Our Flavours · Crafted With Passion
+      </p>
+
+      {/* Main Heading */}
+      <h1
+        className="font-cormorant font-light text-[#F4EDE6] leading-[1.05] mb-6"
+        style={{ fontSize: "clamp(36px, 7vw, 70px)" }}
+      >
+        Experience Our<br />
+        <em className="text-[#C78665]">Signature Menu</em>
+      </h1>
+
+      {/* Divider Line */}
+      <div className="h-px bg-[#C78665] w-24 mb-6 mx-auto" />
+
+      {/* Description */}
+      <p className="font-josefin text-[#C4A882] text-sm font-light leading-relaxed max-w-md mb-10 mx-auto">
+        From handcrafted beverages to globally inspired delicacies,
+        every dish on our menu is thoughtfully prepared using premium ingredients.
+        Indulge in flavors designed to create unforgettable moments.
+      </p>
+
+      {/* Buttons */}
+      <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4">
+
+        <button className="font-josefin w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#C78665] text-[#140A06] text-xs font-semibold tracking-[.15em] uppercase hover:opacity-85 transition-opacity">
+          View Full Menu
+        </button>
+
+        <button className="font-josefin px-8 py-3.5 rounded-full border border-[#C78665]/40 text-[#F4EDE6] text-xs font-light tracking-[.15em] uppercase hover:border-[#C78665] hover:text-[#C78665] transition-all duration-300">
+          Book a Table
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</section>
       <section className=" bg-[#f4efe9] pb-8">
         <div className="max-w-6xl mx-auto px-6">
 

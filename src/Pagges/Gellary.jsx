@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef  } from "react";
 import { X, ZoomIn, ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
-import bg from "../assets/images/bgGallery.jpg"
+import bg from "../assets/images/bgGallery.png"
 import img1 from "../assets/images/gallery/1.jpg"
 import img2 from "../assets/images/gallery/2.jpg"
 import img3 from "../assets/images/gallery/3.jpg"
@@ -179,18 +179,19 @@ const [start, setStart] = useState(false);
       `}</style>
 
       {/* ━━━━━━━━━━━━━━━━━ 1. HERO  [DARK] ━━━━━━━━━━━━━━━━━ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 sm:pt-32 lg:pt-50 pb-16 sm:pb-20 bg-[#0A0502]">
+     <section className="relative h-[800px] flex items-center justify-center overflow-hidden bg-[#f4efe9]">
   
   {/* BG */}
-  <div
-    className="absolute inset-0 bg-cover bg-center opacity-20"
-    style={{ backgroundImage: `url(${bg})` }}
-  />
-  <div className="absolute inset-0 bg-gradient-to-br from-[#0A0502]/30 via-[#0A0502]/30 to-[#0A0502]" />
+   <img
+      src={bg}
+      alt="Menu Banner"
+      className="absolute inset-0 w-full h-full object-cover"
+    />
+  {/* <div className="absolute inset-0 bg-gradient-to-br from-[#0A0502]/30 via-[#0A0502]/30 to-[#0A0502]" /> */}
 
   {/* Corner lines (hidden on small screens) */}
-  <div className="hidden lg:block absolute top-40 left-40 w-16 h-16 border-t border-l border-[#C78665]/50" />
-  <div className="hidden lg:block absolute bottom-40 right-40 w-16 h-16 border-b border-r border-[#C78665]/50" />
+<div className="hidden md:block absolute top-40 left-90 w-16 h-16 border-t border-l border-[#C78665]/40 z-10" />
+  <div className="hidden md:block absolute bottom-50 right-80 w-16 h-16 border-b border-r border-[#C78665]/40 z-10" />
 
   {/* Floating flags (smaller on mobile) */}
   {["🇮🇹","🇯🇵","🇮🇳","🇫🇷","🇲🇽"].map((f,i)=>(

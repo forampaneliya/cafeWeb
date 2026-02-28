@@ -8,6 +8,7 @@ import chef1 from "../assets/images/chef1.png"
 import chef2 from "../assets/images/chef2.png"
 import chef3 from "../assets/images/chef3.png"
 import chef4 from "../assets/images/chef4.png"
+import bannerImg from "../assets/images/aboutbanner.png";
 
 
 /* ══════════════════════════════════════════════════════
@@ -262,21 +263,19 @@ export default function About() {
       `}</style>
 
       {/* ━━━━━━━━ 1. HERO [DARK] ━━━━━━━━ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0502] pt-10 md:pt-10 lg:pt-20 xl:pt-20">
+      <section className="relative h-[900px] flex items-center justify-center overflow-hidden bg-[#F4EDE6] pt-10 md:pt-10 lg:pt-20 xl:pt-0">
         {/* BG */}
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=85)",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0502]/95 via-[#0A0502]/70 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0502] via-transparent to-[#0A0502]/40" />
+       <img
+           src={bannerImg}
+           alt="Menu Banner"
+           className="absolute inset-0 w-full h-[900px] object-cover"
+         />
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-[#0A0502]/95 via-[#0A0502]/70 to-transparent" /> */}
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-[#0A0502] via-transparent to-[#0A0502]/40" /> */}
 
         {/* Corner accents */}
-        <div className="hidden md:block xl:top-40 xl:left-40 md:top-40 md:left-30 absolute top-12 left-10 w-16 h-16 border-t border-l border-[#C78665]/40" />
-        <div className="hidden md:block absolute bottom-10 right-10 w-16 h-16 border-b border-r border-[#C78665]/40" />
+       <div className="hidden md:block absolute top-40 left-90 w-16 h-16 border-t border-l border-[#C78665]/40 z-10" />
+  <div className="hidden md:block absolute bottom-50 right-80 w-16 h-16 border-b border-r border-[#C78665]/40 z-10" />
 
         {/* Content */}
         <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 py-24 sm:py-32 flex items-center justify-center">
@@ -346,7 +345,7 @@ export default function About() {
       </section>
 
       {/* ━━━━━━━━ 2. STATS [LIGHT] ━━━━━━━━ */}
-      <section ref={statsRef} className="bg-[#F4EDE6] py-16 px-6 border-b border-[#E0D0C4]">
+      <section ref={statsRef} className="bg-[#F4EDE6] pb-16 px-6 border-b border-[#E0D0C4]">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
             <div key={i} className="si" style={{ animationDelay: `${i * 0.1}s` }}>
