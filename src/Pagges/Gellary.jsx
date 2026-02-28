@@ -185,7 +185,7 @@ const [start, setStart] = useState(false);
    <img
       src={bg}
       alt="Menu Banner"
-      className="absolute inset-0 w-full h-full object-cover"
+      className="absolute inset-0 w-full h-[750px] object-cover"
     />
   {/* <div className="absolute inset-0 bg-gradient-to-br from-[#0A0502]/30 via-[#0A0502]/30 to-[#0A0502]" /> */}
 

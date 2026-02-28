@@ -211,7 +211,7 @@ export default function Franchise() {
   <img
     src={bannerImg}
     alt="Menu Banner"
-    className="absolute inset-0 w-full h-[800px] object-cover"
+    className="absolute inset-0 w-full h-[700px] object-cover"
   />
 
   {/* Dark Overlay (Important for readability) */}

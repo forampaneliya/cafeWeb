@@ -268,7 +268,7 @@ export default function About() {
        <img
            src={bannerImg}
            alt="Menu Banner"
-           className="absolute inset-0 w-full h-[900px] object-cover"
+           className="absolute inset-0 w-full h-[800px] object-cover"
          />
         {/* <div className="absolute inset-0 bg-gradient-to-r from-[#0A0502]/95 via-[#0A0502]/70 to-transparent" /> */}
         {/* <div className="absolute inset-0 bg-gradient-to-t from-[#0A0502] via-transparent to-[#0A0502]/40" /> */}
