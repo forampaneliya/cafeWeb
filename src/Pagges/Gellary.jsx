@@ -356,21 +356,30 @@ const [start, setStart] = useState(false);
 
       {/* ━━━━━━━━━━━━━━━━━ 5. BANNER  [DARK] ━━━━━━━━━━━━━━━━━ */}
       <section className="relative h-[420px] overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1600&q=85"
-          alt="Dining" className="w-full h-full object-cover object-[center_40%]" />
-        <div className="absolute inset-0 bg-[#0A0502]/72" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-          <p className="font-josefin text-[#C78665] tracking-[.35em] text-[11px] uppercase mb-5">Every Cuisine, Every Culture</p>
-          <h2 className="font-cormorant font-light text-[#F4EDE6] leading-tight mb-6"
-            style={{ fontSize:"clamp(40px,6vw,80px)" }}>
-            The World on a <em className="text-[#C78665]">Plate</em>
-          </h2>
-          <div className="pulse-line mx-auto mb-5 h-px bg-[#C78665] w-24" />
-          <p className="font-josefin text-[#C4A882] text-sm max-w-md font-light leading-relaxed">
-            "Food is our common ground, a universal experience." — James Beard
-          </p>
-        </div>
-      </section>
+  <img
+    src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1600&q=85"
+    alt="Dining"
+    className="w-full h-full  object-cover object-center"
+    style={{ objectPosition: "center 55%" }}
+  />
+  <div className="absolute inset-0 bg-[#0A0502]/75" />
+  <div className="absolute inset-0 bg-gradient-to-t from-[#0A0502]/60 via-transparent to-[#0A0502]/40" />
+  <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+    <p className="font-josefin text-[#C78665] tracking-[.35em] text-[11px] uppercase mb-5">
+      Every Cuisine, Every Culture
+    </p>
+    <h2
+      className="font-cormorant font-light text-[#F4EDE6] leading-tight mb-6"
+      style={{ fontSize: "clamp(40px,6vw,80px)" }}
+    >
+      The World on a <em className="text-[#C78665]">Plate</em>
+    </h2>
+    <div className="mx-auto mb-5 h-px bg-[#C78665] w-24" />
+    <p className="font-josefin text-[#C4A882] text-sm max-w-md font-light leading-relaxed">
+      "Food is our common ground, a universal experience." — James Beard
+    </p>
+  </div>
+</section>
 
       {/* ━━━━━━━━━━━━━━━━━ 6. TESTIMONIALS  [LIGHT] ━━━━━━━━━━━━━━━━━ */}
       <section className="bg-[#F4EDE6] py-24 px-6">
