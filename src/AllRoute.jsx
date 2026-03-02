@@ -6,6 +6,7 @@ import Gallery from './Pagges/Gellary'
 import ContactUs from './Pagges/ContactUs'
 import Franchise from './Pagges/Franchise'
 import Menu from './Pagges/Menu'
+import OrderNow from './Pagges/OrderNow'
 
 function AllRoute() {
   return (
@@ -18,6 +19,7 @@ function AllRoute() {
             <Route path="/gellary" element={<Gallery/>}/>
             <Route path="/franchise" element={<Franchise/>}/>
             <Route path="/contact" element={<ContactUs/>}/>
+            <Route path="/orderNow" element={<OrderNow/>}/>
         </Routes>
     </>
   )

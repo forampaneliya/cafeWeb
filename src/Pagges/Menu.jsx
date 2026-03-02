@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import foodImg from "../assets/images/13.jpg";
+import foodImg from "../assets/images/20.jpg";
 import drinkImg from "../assets/images/39.jpg";
 import dessertImg from "../assets/images/37.jpg";
 import bannerImg from "../assets/images/menubanner.png";
@@ -244,30 +244,33 @@ function Menu() {
           </div>
         </div>
       </section>
-      <section className="bg-[#f4efe9]">
-  <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      {/* menuss */}
+      {/* menuss */}
+<section className="bg-[#f4efe9] overflow-x-hidden font-josefin">
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full overflow-hidden">
 
     {/* Section Title */}
     <div className="text-center mb-8 md:mb-12">
-      <h2 className="text-3xl sm:text-4xl font-bold text-[#4b2e2e]">
-        Our Special Menu
+      <h2 className="font-cormorant text-3xl sm:text-4xl font-light text-[#140A06]">
+        Our <em className="text-[#C78665]">Special Menu</em>
       </h2>
-      <p className="text-gray-500 mt-2 md:mt-3 text-sm sm:text-base">
+      <p className="text-gray-500 mt-2 md:mt-3 text-sm sm:text-base font-light">
         Taste the perfection crafted by our chefs
       </p>
     </div>
 
-    {/* Tabs — SAME FUNCTIONALITY */}
+    {/* Tabs */}
     <div className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-6 mb-10 md:mb-16">
       {["food", "drink", "dessert"].map((tab) => (
         <button
           key={tab}
           onClick={() => setActiveTab(tab)}
-          className={`px-4 sm:px-6 py-1.5 sm:py-2 rounded-full capitalize font-semibold transition-all duration-300 text-sm sm:text-base
-            ${activeTab === tab
+          className={`font-josefin px-4 sm:px-6 py-1.5 sm:py-2 rounded-full capitalize font-semibold tracking-wide transition-all duration-300 text-sm sm:text-base
+          ${
+            activeTab === tab
               ? "bg-[#C78665] text-white shadow-md"
               : "bg-white text-[#4b2e2e] border border-[#C78665]"
-            }`}
+          }`}
         >
           {tab}
         </button>
@@ -283,12 +286,11 @@ function Menu() {
         variants={slideLeft}
         initial="hidden"
         animate="visible"
-         className={`${
-              activeTab === "drink" ? "order-2 md:order-1" : ""
-            }`}
+        className={`${activeTab === "drink" ? "order-2 md:order-1" : ""}`}
       >
         {menuData[activeTab].map((item, index) => (
           <div key={index} className="flex items-start mb-6 md:mb-8">
+
             <img
               src={item.image}
               alt="item"
@@ -296,25 +298,26 @@ function Menu() {
             />
 
             <div className="flex-1 min-w-0 ml-2 sm:ml-3">
+
               {/* Name + Price */}
               <div className="flex justify-between items-start gap-2">
-                <h4 className="font-semibold text-[#3a2a2a] text-base sm:text-lg truncate">
+                <h4 className="font-cormorant text-[#3a2a2a] text-lg sm:text-xl font-semibold truncate">
                   {item.name}
                 </h4>
 
-                <p className="text-[#C78665] font-semibold text-sm sm:text-base whitespace-nowrap">
+                <p className="font-cormorant text-[#C78665] font-bold text-lg sm:text-xl whitespace-nowrap">
                   {item.price}
                 </p>
               </div>
 
               {/* Description + Tag */}
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-3 mt-1 sm:mt-2">
-                <p className="text-xs sm:text-sm text-gray-500 pr-2">
+                <p className="font-josefin text-xs sm:text-sm text-gray-400 font-light pr-2">
                   {item.description}
                 </p>
 
-                <span className="text-[10px] sm:text-xs border border-[#C78665] 
-                  text-[#C78665] px-2 sm:px-3 py-0.5 sm:py-1 rounded-full whitespace-nowrap self-start sm:self-center">
+                <span className="font-josefin text-[10px] sm:text-xs tracking-widest uppercase border border-[#C78665] 
+                text-[#C78665] px-2 sm:px-3 py-0.5 sm:py-1 rounded-full whitespace-nowrap self-start sm:self-center">
                   {item.tag}
                 </span>
               </div>
@@ -332,11 +335,11 @@ function Menu() {
         initial="hidden"
         animate="visible"
         className={`flex justify-center order-1 lg:order-none mb-6 lg:mb-6 
-          ${activeTab === "drink" ? "lg:order-1" : "lg:order-2 lg:justify-end"}`}
+        ${activeTab === "drink" ? "lg:order-1" : "lg:order-2 lg:justify-end"}`}
       >
         <div className="w-[280px] sm:w-[350px] md:w-[380px] lg:w-[420px] 
-          h-[350px] sm:h-[400px] md:h-[450px] lg:h-[470px] 
-          overflow-hidden rounded-t-full rounded-b-2xl sm:rounded-b-3xl shadow-xl md:shadow-2xl">
+        h-[350px] sm:h-[400px] md:h-[450px] lg:h-[470px] 
+        overflow-hidden rounded-t-full rounded-b-2xl sm:rounded-b-3xl shadow-xl md:shadow-2xl">
           <img
             src={getImage()}
             alt="menu"
@@ -350,186 +353,185 @@ function Menu() {
 </section>
 
       <section className="bg-[#140A06] py-16 md:py-20 lg:py-24 px-4 sm:px-6">
-  <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center">
 
-    {/* Left: Image with decorative frame */}
-    <motion.div
-      initial={{ opacity: 0, x: -60 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="relative flex justify-center order-1 lg:order-none"
-    >
-      <div className="relative w-[280px] sm:w-[320px] md:w-[350px] lg:w-[380px] h-[360px] sm:h-[400px] md:h-[440px] lg:h-[480px]">
-        {/* Decorative border offset */}
-        <div className="absolute top-3 sm:top-4 left-3 sm:left-4 w-full h-full border border-[#C78665]/30 rounded-2xl z-0" />
-        <img
-          src={chefImg}
-          alt="Chef crafting food"
-          className="relative z-10 w-full h-full object-cover rounded-2xl shadow-2xl"
-        />
-        {/* Floating badge */}
-        <div className="absolute -bottom-4 sm:-bottom-5 -right-4 sm:-right-5 z-20 bg-[#C78665] text-[#140A06] rounded-full w-20 h-20 sm:w-24 sm:h-24 flex flex-col items-center justify-center shadow-xl">
-          <span className="font-cormorant font-bold text-xl sm:text-2xl leading-none">15+</span>
-          <span className="font-josefin text-[8px] sm:text-[9px] tracking-widest uppercase text-center leading-tight">Years of<br />Craft</span>
-        </div>
-      </div>
-    </motion.div>
-
-    {/* Right: Text + Feature Cards */}
-    <motion.div
-      initial={{ opacity: 0, x: 60 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="order-2 lg:order-none"
-    >
-      <p className="font-josefin text-[#C78665] tracking-[.4em] text-[9px] sm:text-[10px] uppercase mb-3 sm:mb-4">
-        Our Promise · Every Plate
-      </p>
-      <h2
-        className="font-cormorant font-light text-[#F4EDE6] leading-tight mb-3 sm:mb-4"
-        style={{ fontSize: "clamp(28px, 5vw, 52px)" }}
-      >
-        Crafted With<br />
-        <em className="text-[#C78665]">Love & Precision</em>
-      </h2>
-      <div className="h-px bg-[#C78665]/40 w-16 sm:w-20 mb-4 sm:mb-6" />
-      <p className="font-josefin text-[#C4A882] text-xs sm:text-sm font-light leading-relaxed mb-8 sm:mb-10">
-        Every dish that leaves our kitchen carries the dedication of our chefs,
-        the freshness of hand-picked ingredients, and decades of culinary expertise
-        passed down through tradition.
-      </p>
-
-      {/* Feature list */}
-      {[
-        { icon: "🌿", title: "Farm-Fresh Ingredients", desc: "Sourced daily from local farms for unmatched freshness." },
-        { icon: "👨‍🍳", title: "Master Chef Recipes", desc: "Signature recipes developed by award-winning chefs." },
-        { icon: "🔥", title: "Handcrafted Every Day", desc: "No pre-made shortcuts — everything made fresh to order." },
-        { icon: "✨", title: "Plated With Artistry", desc: "Presented beautifully, because dining is an experience." },
-      ].map((feat, i) => (
-        <div key={i} className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
-          <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#C78665]/10 border border-[#C78665]/30 flex items-center justify-center text-base sm:text-lg flex-shrink-0">
-            {feat.icon}
-          </div>
-          <div>
-            <h4 className="font-josefin text-[#F4EDE6] text-xs sm:text-sm font-semibold tracking-wide">{feat.title}</h4>
-            <p className="font-josefin text-[#C4A882] text-[11px] sm:text-xs font-light mt-1 leading-relaxed">{feat.desc}</p>
-          </div>
-        </div>
-      ))}
-    </motion.div>
-  </div>
-</section>
-
-{/* ===== WEEKLY SPECIALS SECTION ===== */}
-<section className="bg-[#f4efe9] py-16 md:py-20 lg:py-24 overflow-hidden">
-  <div className="max-w-6xl mx-auto px-4 sm:px-6">
-
-    {/* Header */}
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
-      className="text-center mb-10 md:mb-14"
-    >
-      <p className="font-josefin text-[#C78665] tracking-[.4em] text-[9px] sm:text-[10px] uppercase mb-2 sm:mb-3">
-        Rotating Daily · Fresh Every Week
-      </p>
-      <h2
-        className="font-cormorant font-light text-[#140A06] leading-tight"
-        style={{ fontSize: "clamp(26px, 5vw, 50px)" }}
-      >
-        Chef's <em className="text-[#C78665]">Weekly Specials</em>
-      </h2>
-      <div className="h-px bg-[#C78665] w-16 sm:w-20 mx-auto mt-4 sm:mt-5" />
-    </motion.div>
-
-    {/* Slider Viewport */}
-    <div className="overflow-hidden relative">
-      <motion.div
-        className="flex gap-4 sm:gap-6 cursor-grab active:cursor-grabbing"
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.08}
-        onDragStart={() => {
-          setIsDragging(true);
-          stopAutoPlay();
-        }}
-        onDragEnd={handleDragEnd}
-        animate={{ x: -currentIndex * CARD_WIDTH }}
-        transition={{ type: "spring", stiffness: 260, damping: 28 }}
-      >
-        {weeklySpecials.map((item, i) => (
+          {/* Left: Image with decorative frame */}
           <motion.div
-            key={i}
-            className="min-w-[260px] sm:min-w-[280px] md:min-w-[300px] bg-white rounded-2xl overflow-hidden shadow-lg group flex-shrink-0 border border-[#C78665]/10 select-none"
-            whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(199,134,101,0.18)" }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="relative flex justify-center order-1 lg:order-none"
           >
-            {/* Image */}
-            <div className="relative h-36 sm:h-40 md:h-44 overflow-hidden pointer-events-none">
+            <div className="relative w-[280px] sm:w-[320px] md:w-[350px] lg:w-[380px] h-[360px] sm:h-[400px] md:h-[440px] lg:h-[480px]">
+              {/* Decorative border offset */}
+              <div className="absolute top-3 sm:top-4 left-3 sm:left-4 w-full h-full border border-[#C78665]/30 rounded-2xl z-0" />
               <img
-                src={item.image}
-                alt={item.dish}
-                draggable="false"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                src={chefImg}
+                alt="Chef crafting food"
+                className="relative z-10 w-full h-full object-cover rounded-2xl shadow-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              <span className="absolute top-2 sm:top-3 left-2 sm:left-3 font-josefin text-[8px] sm:text-[9px] tracking-widest uppercase bg-[#C78665] text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
-                {item.day}
-              </span>
-              <span className="absolute top-2 sm:top-3 right-2 sm:right-3 font-josefin text-[8px] sm:text-[9px] tracking-widest uppercase bg-white/90 text-[#C78665] px-2 sm:px-3 py-0.5 sm:py-1 rounded-full border border-[#C78665]/30">
-                {item.badge}
-              </span>
-            </div>
-
-            {/* Content */}
-            <div className="p-3 sm:p-4 md:p-5">
-              <h4 className="font-cormorant text-[#3a2a2a] text-lg sm:text-xl font-semibold leading-tight mb-1">
-                {item.dish}
-              </h4>
-              <p className="font-josefin text-gray-400 text-[11px] sm:text-xs font-light mb-3 sm:mb-4 leading-relaxed">
-                {item.note}
-              </p>
-              <div className="flex items-center justify-between">
-                <span className="font-cormorant text-[#C78665] text-xl sm:text-2xl font-bold">
-                  {item.price}
-                </span>
-                <button
-                  onPointerDown={(e) => e.stopPropagation()}
-                  className="font-josefin text-[8px] sm:text-[9px] tracking-widest uppercase px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-[#C78665] text-[#C78665] hover:bg-[#C78665] hover:text-white transition-all duration-300"
-                >
-                  Order
-                </button>
+              {/* Floating badge */}
+              <div className="absolute -bottom-4 sm:-bottom-5 -right-4 sm:-right-5 z-20 bg-[#C78665] text-[#140A06] rounded-full w-20 h-20 sm:w-24 sm:h-24 flex flex-col items-center justify-center shadow-xl">
+                <span className="font-cormorant font-bold text-xl sm:text-2xl leading-none">15+</span>
+                <span className="font-josefin text-[8px] sm:text-[9px] tracking-widest uppercase text-center leading-tight">Years of<br />Craft</span>
               </div>
             </div>
           </motion.div>
-        ))}
-      </motion.div>
-    </div>
 
-    {/* Dot Indicators */}
-    <div className="flex justify-center gap-2 mt-6 sm:mt-8 md:mt-10">
-      {Array.from({ length: 3 }).map((_, i) => (
-        <button
-          key={i}
-          onClick={() => {
-            stopAutoPlay();
-            setCurrentIndex(Math.round(i * (weeklySpecials.length / 4)));
-            startAutoPlay();
-          }}
-          className={`transition-all duration-300 rounded-full ${
-            Math.min(Math.floor(currentIndex / (weeklySpecials.length / 4)), 3) === i
-              ? "w-5 sm:w-6 h-1.5 sm:h-2 bg-[#C78665]"
-              : "w-1.5 sm:w-2 h-1.5 sm:h-2 bg-[#C78665]/30"
-          }`}
-        />
-      ))}
-    </div>
-  </div>
-</section>
+          {/* Right: Text + Feature Cards */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="order-2 lg:order-none"
+          >
+            <p className="font-josefin text-[#C78665] tracking-[.4em] text-[9px] sm:text-[10px] uppercase mb-3 sm:mb-4">
+              Our Promise · Every Plate
+            </p>
+            <h2
+              className="font-cormorant font-light text-[#F4EDE6] leading-tight mb-3 sm:mb-4"
+              style={{ fontSize: "clamp(28px, 5vw, 52px)" }}
+            >
+              Crafted With<br />
+              <em className="text-[#C78665]">Love & Precision</em>
+            </h2>
+            <div className="h-px bg-[#C78665]/40 w-16 sm:w-20 mb-4 sm:mb-6" />
+            <p className="font-josefin text-[#C4A882] text-xs sm:text-sm font-light leading-relaxed mb-8 sm:mb-10">
+              Every dish that leaves our kitchen carries the dedication of our chefs,
+              the freshness of hand-picked ingredients, and decades of culinary expertise
+              passed down through tradition.
+            </p>
+
+            {/* Feature list */}
+            {[
+              { icon: "🌿", title: "Farm-Fresh Ingredients", desc: "Sourced daily from local farms for unmatched freshness." },
+              { icon: "👨‍🍳", title: "Master Chef Recipes", desc: "Signature recipes developed by award-winning chefs." },
+              { icon: "🔥", title: "Handcrafted Every Day", desc: "No pre-made shortcuts — everything made fresh to order." },
+              { icon: "✨", title: "Plated With Artistry", desc: "Presented beautifully, because dining is an experience." },
+            ].map((feat, i) => (
+              <div key={i} className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#C78665]/10 border border-[#C78665]/30 flex items-center justify-center text-base sm:text-lg flex-shrink-0">
+                  {feat.icon}
+                </div>
+                <div>
+                  <h4 className="font-josefin text-[#F4EDE6] text-xs sm:text-sm font-semibold tracking-wide">{feat.title}</h4>
+                  <p className="font-josefin text-[#C4A882] text-[11px] sm:text-xs font-light mt-1 leading-relaxed">{feat.desc}</p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ===== WEEKLY SPECIALS SECTION ===== */}
+      <section className="bg-[#f4efe9] py-16 md:py-20 lg:py-24 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-10 md:mb-14"
+          >
+            <p className="font-josefin text-[#C78665] tracking-[.4em] text-[9px] sm:text-[10px] uppercase mb-2 sm:mb-3">
+              Rotating Daily · Fresh Every Week
+            </p>
+            <h2
+              className="font-cormorant font-light text-[#140A06] leading-tight"
+              style={{ fontSize: "clamp(26px, 5vw, 50px)" }}
+            >
+              Chef's <em className="text-[#C78665]">Weekly Specials</em>
+            </h2>
+            <div className="h-px bg-[#C78665] w-16 sm:w-20 mx-auto mt-4 sm:mt-5" />
+          </motion.div>
+
+          {/* Slider Viewport */}
+          <div className="overflow-hidden relative">
+            <motion.div
+              className="flex gap-4 sm:gap-6 cursor-grab active:cursor-grabbing"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.08}
+              onDragStart={() => {
+                setIsDragging(true);
+                stopAutoPlay();
+              }}
+              onDragEnd={handleDragEnd}
+              animate={{ x: -currentIndex * CARD_WIDTH }}
+              transition={{ type: "spring", stiffness: 260, damping: 28 }}
+            >
+              {weeklySpecials.map((item, i) => (
+                <motion.div
+                  key={i}
+                  className="min-w-[260px] sm:min-w-[280px] md:min-w-[300px] bg-white rounded-2xl overflow-hidden shadow-lg group flex-shrink-0 border border-[#C78665]/10 select-none"
+                  whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(199,134,101,0.18)" }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Image */}
+                  <div className="relative h-36 sm:h-40 md:h-44 overflow-hidden pointer-events-none">
+                    <img
+                      src={item.image}
+                      alt={item.dish}
+                      draggable="false"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    <span className="absolute top-2 sm:top-3 left-2 sm:left-3 font-josefin text-[8px] sm:text-[9px] tracking-widest uppercase bg-[#C78665] text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">
+                      {item.day}
+                    </span>
+                    <span className="absolute top-2 sm:top-3 right-2 sm:right-3 font-josefin text-[8px] sm:text-[9px] tracking-widest uppercase bg-white/90 text-[#C78665] px-2 sm:px-3 py-0.5 sm:py-1 rounded-full border border-[#C78665]/30">
+                      {item.badge}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-3 sm:p-4 md:p-5">
+                    <h4 className="font-cormorant text-[#3a2a2a] text-lg sm:text-xl font-semibold leading-tight mb-1">
+                      {item.dish}
+                    </h4>
+                    <p className="font-josefin text-gray-400 text-[11px] sm:text-xs font-light mb-3 sm:mb-4 leading-relaxed">
+                      {item.note}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="font-cormorant text-[#C78665] text-xl sm:text-2xl font-bold">
+                        {item.price}
+                      </span>
+                      <button
+                        onPointerDown={(e) => e.stopPropagation()}
+                        className="font-josefin text-[8px] sm:text-[9px] tracking-widest uppercase px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-[#C78665] text-[#C78665] hover:bg-[#C78665] hover:text-white transition-all duration-300"
+                      >
+                        Order
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Dot Indicators */}
+          <div className="flex justify-center gap-2 mt-6 sm:mt-8 md:mt-10">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  stopAutoPlay();
+                  setCurrentIndex(Math.round(i * (weeklySpecials.length / 4)));
+                  startAutoPlay();
+                }}
+                className={`transition-all duration-300 rounded-full ${Math.min(Math.floor(currentIndex / (weeklySpecials.length / 4)), 3) === i
+                  ? "w-5 sm:w-6 h-1.5 sm:h-2 bg-[#C78665]"
+                  : "w-1.5 sm:w-2 h-1.5 sm:h-2 bg-[#C78665]/30"
+                  }`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
     </>
   );
