@@ -14,7 +14,7 @@ function Navbar() {
   }, []);
 
   return (
-    <>
+    <div className="font-sans"> {/* Font Applied Here */}
       {/* ================= SUB HEADER ================= */}
       <div
         className={`fixed top-0 w-full z-50 text-white font-bold text-xs sm:text-sm hidden md:flex flex-col transition-all duration-300
@@ -22,24 +22,24 @@ function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 gap-10 sm:px-6 py-2 flex items-center justify-between my-2">
 
-  {/* Left Side */}
-  <div className="flex items-center gap-2 ">
-    <MapPin size={14} />
-    <span>Surat, Gujarat, India</span>
-  </div>
+          {/* Left Side */}
+          <div className="flex items-center gap-2">
+            <MapPin size={14} />
+            <span>Surat, Gujarat, India</span>
+          </div>
 
-  {/* Right Side */}
-    <div className="flex items-center gap-2">
-      <Mail size={14} />
-      <span>info@brandname.com</span>
-    </div>
+          {/* Right Side */}
+          <div className="flex items-center gap-2">
+            <Mail size={14} />
+            <span>info@brandname.com</span>
+          </div>
 
-    <div className="flex items-center gap-2">
-      <PhoneCall size={14} />
-      <span>+1 213 555 7890</span>
-    </div>
+          <div className="flex items-center gap-2">
+            <PhoneCall size={14} />
+            <span>+1 213 555 7890</span>
+          </div>
 
-</div>
+        </div>
         <hr className="border-t border-white/40" />
       </div>
 
@@ -77,7 +77,7 @@ function Navbar() {
               <Link
                 key={item.name}
                 to={item.path}
-                className="relative font-bold text-[#FCE779] tracking-widest text-sm
+                className="relative font-semibold text-[#FCE779] tracking-widest text-sm
                 before:absolute before:left-1/2 before:-translate-x-1/2 before:-bottom-2
                 before:w-0 before:h-[1px] before:bg-white
                 after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-3
@@ -93,7 +93,7 @@ function Navbar() {
 
           {/* Order Button */}
           <Link
-            to="/menu"
+            to="/orderNow"
             className="ml-6 hidden lg:block relative overflow-hidden border border-white
             text-[#FCE779] px-6 py-2 rounded-full text-sm
             before:absolute before:inset-0 before:bg-white before:translate-y-full
@@ -119,6 +119,7 @@ function Navbar() {
         ${open ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="absolute right-0 h-full w-full sm:w-[360px] bg-black text-[#FCE779] p-6">
+
           {/* Sidebar Header */}
           <div className="flex items-center justify-between mb-8">
             <img src={logo} alt="Logo" className="h-10" />
@@ -152,7 +153,7 @@ function Navbar() {
           </nav>
 
           {/* Contact Section */}
-          <h2 className="text-xl font-bold mb-6 border-b border-gray-700 pb-2 text-center">
+          <h2 className="text-xl font-semibold mb-6 border-b border-gray-700 pb-2 text-center">
             Contact Us
           </h2>
 
@@ -176,7 +177,7 @@ function Navbar() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
