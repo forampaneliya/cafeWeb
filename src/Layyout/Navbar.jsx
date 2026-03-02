@@ -93,7 +93,7 @@ function Navbar() {
 
           {/* Order Button */}
           <Link
-            to="/menu"
+            to="/orderNow"
             className="ml-6 hidden lg:block relative overflow-hidden border border-white
             text-[#FCE779] px-6 py-2 rounded-full text-sm
             before:absolute before:inset-0 before:bg-white before:translate-y-full
