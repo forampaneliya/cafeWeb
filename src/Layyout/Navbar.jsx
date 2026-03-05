@@ -25,7 +25,7 @@ function Navbar() {
           {/* Left Side */}
           <div className="flex items-center gap-2">
             <MapPin size={14} />
-            <span>Surat, Gujarat, India</span>
+            <span>UK</span>
           </div>
 
           {/* Right Side */}
