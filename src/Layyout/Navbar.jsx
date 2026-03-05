@@ -33,7 +33,7 @@ function Navbar() {
           {/* Left Side */}
           <div className="flex items-center gap-2">
             <MapPin size={14} />
-            <span>UK</span>
+            <span>DIFC Gate Villag, Dubai</span>
           </div>
 
           {/* Right Side */}
