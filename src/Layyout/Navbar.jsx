@@ -168,7 +168,7 @@ function Navbar() {
           <div className="space-y-5 text-sm">
             <div className="flex items-center gap-3">
               <MapPin size={18} />
-              <span>Surat, Gujarat, India</span>
+              <span>DIFC Gate village, Dubai</span>
             </div>
             <div className="flex items-center gap-3">
               <Mail size={18} />
