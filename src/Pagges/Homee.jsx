@@ -81,9 +81,7 @@ const NextArrow = ({ onClick }) => (
 
 function Homee() {
 
-  const lockRef = useRef(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+  
   const [activeIndex, setActiveIndex] = useState(0);
   const [entering, setEntering] = useState(false);
   const triggersRef = useRef([]);
@@ -95,22 +93,12 @@ function Homee() {
   const [active, setActive] = useState(0);
   const [animating, setAnimating] = useState(false);
 
-  const goTo = (index) => {
-    if (animating) return;
-    setAnimating(true);
-    setTimeout(() => {
-      setActive(index);
-      setAnimating(false);
-    }, 400);
-  };
+ 
 
   const prev = () => goTo(active === 0 ? dishes.length - 1 : active - 1);
-  const next = () => goTo(active === dishes.length - 1 ? 0 : active + 1);
+  // const next = () => goTo(active === dishes.length - 1 ? 0 : active + 1);
 
-  useEffect(() => {
-    const timer = setInterval(next, 5000);
-    return () => clearInterval(timer);
-  }, [active]);
+  
 
   const dish = dishes[active];
   const padNum = (n) => String(n).padStart(2, "0");
@@ -242,74 +230,87 @@ function Homee() {
   return () => observer.disconnect();
 }, []);
 
-  const settings = {
-    dots: false,
-    arrows: true,
-    infinite: true,
-    speed: 1200,
-    autoplay: true,
-    autoplaySpeed: 3500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    fade: true,
-    cssEase: "ease-in-out",
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
-    beforeChange: () => {
-      document.querySelectorAll(".hero-img").forEach((img) => {
-        img.style.animation = "none";
-        img.offsetHeight;
-        img.style.animation = "";
-      });
-    },
+  
+
+const slides = [
+  {
+    img: banner1,
+    eyebrow: "Signature Series",
+    title: ["Handcrafted Coffee ","Brewed to Perfection"],
+    desc: "We carefully select premium beans and brew every cup with passion, delivering rich aroma, smooth flavor, and an unforgettable experience.",
+    cta: "Explore Menu",
+    ctaSub: "View Collection",
+    tag: "Est. 2025",
+    num: "01",
+  },
+  {
+    img: banner2,
+    eyebrow: "Our Ambience",
+    title: ["A Cozy Space to Relax,", "Sip & Connect"],
+    desc: "Step into a warm and welcoming atmosphere where great coffee, calm moments, and meaningful conversations come together beautifully.",
+    cta: "Our Story",
+    ctaSub: "Take a Tour",
+    tag: "Premium Lounge",
+    num: "02",
+  },
+  {
+    img: banner3,
+    eyebrow: "Farm to Cup",
+    title: ["From Fresh Beans to", "Your Perfect Cup"],
+    desc: "Every sip tells a story of quality roasting, expert brewing, and our love for creating coffee moments worth remembering.",
+    cta: "Meet the Beans",
+    ctaSub: "Sourcing Story",
+    tag: "Single Origin",
+    num: "03",
+  },
+];
+
+  const [current, setCurrent] = useState(0);
+  const [prevIdx, setPrevIdx] = useState(null);
+  const [transitioning, setTransitioning] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [animKey, setAnimKey] = useState(0);
+  const progressRef = useRef(null);
+  const DURATION = 6000;
+
+  const goTo = (idx) => {
+    if (transitioning || idx === current) return;
+    setTransitioning(true);
+    setPrevIdx(current);
+    setProgress(0);
+    setAnimKey((k) => k + 1);
+    setTimeout(() => {
+      setCurrent(idx);
+      setPrevIdx(null);
+      setTransitioning(false);
+    }, 900);
   };
 
-  const slides = [
-    {
-      img: banner1,
-      title: "Handcrafted Coffee, Brewed to Perfection",
-      desc: "We carefully select premium beans and brew every cup with passion, delivering rich aroma, smooth flavor, and an unforgettable coffee experience.",
-    },
-    {
-      img: banner2,
-      title: "A Cozy Space to Relax, Sip & Connect",
-      desc: "Step into a warm and welcoming atmosphere where great coffee, calm moments, and meaningful conversations come together beautifully.",
-    },
-    {
-      img: banner3,
-      title: "From Fresh Beans to Your Perfect Cup",
-      desc: "Every sip tells a story of quality roasting, expert brewing, and our love for creating coffee moments worth remembering.",
-    },
-  ];
+  const next = () => goTo((current + 1) % slides.length);
+  const goBack = () => goTo((current - 1 + slides.length) % slides.length);
+
+  useEffect(() => {
+    const id = setInterval(next, DURATION);
+    return () => clearInterval(id);
+  }, [current, transitioning]);
+
+  useEffect(() => {
+    setProgress(0);
+    const start = Date.now();
+    progressRef.current = setInterval(() => {
+      setProgress(Math.min(((Date.now() - start) / DURATION) * 100, 100));
+    }, 30);
+    return () => clearInterval(progressRef.current);
+  }, [current]);
+
+  const slide = slides[current];
+  const prevSlide = prevIdx !== null ? slides[prevIdx] : null;
+
+ 
 
   
 
-  const items = [
-    {
-      title: "The Coffee Everyone Talks About",
-      desc1: "Slow-brewed with patience and precision, delivering a bold aroma.",
-      desc2: "Made for mornings, meetings, and moments worth savoring.",
-      img: "https://images.unsplash.com/photo-1511920170033-f8396924c348",
-    },
-    {
-      title: "Our Most Ordered Dessert",
-      desc1: "Freshly baked with soft textures and balanced sweetness.",
-      desc2: "The dessert people come back for again and again.",
-      img: "https://images.unsplash.com/photo-1551024601-bec78aea704b",
-    },
-    {
-      title: "The Cafe Special Savory",
-      desc1: "Warm, comforting, and crafted to pair perfectly with coffee.",
-      desc2: "A dish that turns first-time visitors into regulars.",
-      img: whychoose,
-    },
-  ];
 
-
-  
-
-  const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState("next");
 
   
 
@@ -448,88 +449,283 @@ function Homee() {
           border: 1px solid rgba(199,134,101,0.15);
           background: rgba(255,255,255,0.02);
         }
+
+          @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Jost:wght@300;400;500;600&display=swap');
+
+        .h-serif { font-family: 'Cormorant Garamond', serif; }
+        .h-sans  { font-family: 'Jost', sans-serif; }
+
+        /* ── BG transitions ── */
+        @keyframes bgIn  { from { opacity:0; transform:scale(1.07); } to { opacity:1; transform:scale(1); } }
+        @keyframes bgOut { from { opacity:1; transform:scale(1);    } to { opacity:0; transform:scale(0.96); } }
+        .bg-in  { animation: bgIn  0.95s cubic-bezier(0.22,1,0.36,1) forwards; }
+        .bg-out { animation: bgOut 0.95s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+        /* ── Content reveal ── */
+        @keyframes lineUp { from { transform:translateY(105%); opacity:0; } to { transform:translateY(0); opacity:1; } }
+        @keyframes fadeUp { from { transform:translateY(16px);  opacity:0; } to { transform:translateY(0); opacity:1; } }
+
+        .a-eyebrow { animation: fadeUp 0.55s 0.05s ease both; }
+        .a-l0      { animation: lineUp 0.7s 0.18s cubic-bezier(0.22,1,0.36,1) both; }
+        .a-l1      { animation: lineUp 0.7s 0.28s cubic-bezier(0.22,1,0.36,1) both; }
+        .a-l2      { animation: lineUp 0.7s 0.38s cubic-bezier(0.22,1,0.36,1) both; }
+        .a-desc    { animation: fadeUp 0.65s 0.46s ease both; }
+        .a-btns    { animation: fadeUp 0.65s 0.56s ease both; }
+        .a-ghost   { animation: fadeUp 0.6s  0.08s ease both; }
+
+        /* ── Shimmer on primary button ── */
+        .btn-shim::after {
+          content:''; position:absolute; inset:0;
+          background:rgba(255,255,255,0.18);
+          transform:translateX(-110%) skewX(-18deg);
+          transition:transform 0.55s cubic-bezier(0.25,1,0.5,1);
+        }
+        .btn-shim:hover::after { transform:translateX(110%) skewX(-18deg); }
+
+        /* ── Diagonal deco line (desktop) ── */
+        .deco-diag::after {
+          content:''; position:absolute;
+          left:40%; top:-5%; width:1px; height:110%;
+          background:linear-gradient(to bottom,transparent 0%,rgba(199,134,101,0.14) 40%,rgba(199,134,101,0.06) 80%,transparent 100%);
+          transform:rotate(9deg); transform-origin:top center;
+          pointer-events:none;
+        }
+
+        /* ── Grain overlay ── */
+        .grain {
+          background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+          mix-blend-mode:overlay;
+        }
+
+        /* ── Arrow button hover ── */
+        .arrow-btn:hover {
+          background:rgba(199,134,101,0.15) !important;
+          border-color:#C78665 !important;
+          color:#C78665 !important;
+        }
+
+        /* ── Thumb hover ── */
+        .thumb-item:hover:not(.thumb-on) { opacity:0.72 !important; transform:scale(0.97) !important; }
+
+        /* ── Progress strip ── */
+        .prog-fill { transition:width 30ms linear; }
       `}</style>
 
 
       {/* HERO SLIDER */}
-      <section className="relative overflow-hidden">
-  <Slider {...settings}>
-    {slides.map((slide, index) => (
-      <div key={index} className="relative h-[85vh] sm:h-[90vh] md:h-screen">
-        
-        {/* Image */}
-        <img
-          src={slide.img}
-          alt=""
-          className="hero-img w-full h-[100vh] object-cover"
-        />
+       <section className="h-sans relative w-full overflow-hidden bg-[#0D0705]"
+        style={{ height: "100svh", minHeight: 680 }}>
 
-        {/* Overlays */}
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="absolute inset-0 bg-gradient-to-t h-full from-black/70 via-black/40 to-black/10"></div>
+        {/* ── BG LAYERS ── */}
+        {prevSlide && (
+          <div key={`p${prevIdx}`}
+            className="bg-out absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${prevSlide.img})` }} />
+        )}
+        <div key={`c${current}`}
+          className="bg-in absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${slide.img})` }} />
 
-        {/* Content */}
-        <div className="absolute inset-0 flex items-center justify-center 
-                        pt-16 sm:pt-20 md:pt-32 lg:pt-0">
-          
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-            
-            {/* Title */}
-            <h1 className="text-[22px] sm:text-[28px] md:text-[36px] lg:text-[44px] xl:text-[48px]
-                           font-serif font-medium text-[#E7C27D] mb-4 leading-tight">
-              {slide.title}
-            </h1>
+        {/* ── OVERLAYS ── */}
+        <div className="absolute inset-0"
+          style={{ background:"linear-gradient(105deg,rgba(13,7,5,0.92) 0%,rgba(13,7,5,0.55) 52%,rgba(13,7,5,0.16) 100%)" }} />
+        <div className="absolute inset-0"
+          style={{ background:"linear-gradient(to top,rgba(13,7,5,0.90) 0%,transparent 55%)" }} />
+        <div className="absolute inset-0"
+          style={{ background:"radial-gradient(ellipse at center,transparent 38%,rgba(5,2,1,0.55) 100%)" }} />
 
-            {/* Description */}
-            <p className="text-white text-sm sm:text-base md:text-lg
-                          mb-6 sm:mb-8 max-w-xl sm:max-w-2xl mx-auto leading-relaxed">
-              {slide.desc}
-            </p>
+        {/* ── DECO: diagonal line (md+) ── */}
+        <div className="deco-diag hidden md:block absolute inset-0 pointer-events-none z-[2] overflow-hidden" />
 
-            {/* Button */}
-            <button className="border border-white text-white 
-                               px-6 sm:px-8 py-2.5 sm:py-3 
-                               rounded-3xl uppercase tracking-widest 
-                               text-[11px] sm:text-sm 
-                               hover:bg-white hover:text-[#3B2A22] 
-                               transition-all duration-300">
-              Explore Menu
+        {/* ── DECO: rings (lg+) ── */}
+        <div className="hidden lg:block absolute -top-20 -right-28 w-[480px] h-[480px] rounded-full border border-[#C78665]/10 pointer-events-none z-[1]" />
+        <div className="hidden lg:block absolute top-5 -right-10 w-[280px] h-[280px] rounded-full border border-[#C78665]/[0.07] pointer-events-none z-[1]" />
+
+        {/* ── GRAIN ── */}
+        <div className="grain absolute inset-0 z-[9] pointer-events-none opacity-30" />
+
+        {/* ── TOP RULE ── */}
+        <div className="absolute top-0 left-0 right-0 h-px z-20"
+          style={{ background:"linear-gradient(to right,transparent,rgba(199,134,101,0.45),transparent)" }} />
+
+        {/* ══════════════════════════════════════
+            MAIN CONTENT
+        ══════════════════════════════════════ */}
+        <div key={animKey}
+          className="absolute inset-0 z-10 flex flex-col justify-center
+                     px-5 sm:px-10 md:px-16 lg:px-20 xl:px-28
+                     pt-24 pb-32 max-w-[700px]">
+
+          {/* Ghost number */}
+          <span className="a-ghost h-serif absolute pointer-events-none select-none"
+            style={{
+              fontSize:"clamp(5rem,12vw,9rem)", fontWeight:300,
+              color:"rgba(199,134,101,0.055)", lineHeight:1,
+              top:"clamp(55px,11vh,108px)", left:"clamp(14px,4vw,70px)",
+              letterSpacing:"-0.04em", zIndex:0,
+            }}>
+            {slide.num}
+          </span>
+
+          {/* Eyebrow */}
+          <div className="a-eyebrow flex items-center gap-3 mb-5 relative z-10">
+            <span className="inline-block w-7 h-px bg-[#C78665] flex-shrink-0" />
+            <span className="text-[#C78665] text-[10px] tracking-[0.35em] uppercase font-light">
+              {slide.eyebrow}
+            </span>
+          </div>
+
+          {/* Title */}
+         <h1
+  className="h-serif relative z-10 mb-6"
+  style={{
+    fontWeight: 300,
+    fontSize: "clamp(50px, 3vw, 40px)",
+    lineHeight: 1.06,
+    color: "#F4EDE6"
+  }}
+>
+  {slide.title.map((line, i) => (
+    <span key={`${current}-${i}`} className="block overflow-hidden">
+      <span
+        className={`block a-l${i}`}
+        style={{ color: i === 0 ? "#C78665" : "#F4EDE6" }}
+      >
+        {line}
+      </span>
+    </span>
+  ))}
+</h1>
+
+          {/* Description */}
+          <p className="a-desc relative z-10 text-[#D6C7BC]/80 leading-[1.75] mb-9 max-w-md"
+            style={{ fontSize:"clamp(0.82rem,1.3vw,1rem)" }}>
+            {slide.desc}
+          </p>
+
+          {/* Buttons */}
+          <div className="a-btns relative z-10 flex items-center gap-3 flex-wrap">
+
+            {/* Primary */}
+            <button className="btn-shim relative overflow-hidden
+              bg-[#C78665] text-[#140A06] font-medium
+              px-7 py-[11px] rounded-full
+              text-[11px] tracking-[0.22em] uppercase
+              transition-shadow duration-300
+              hover:shadow-[0_0_28px_rgba(199,134,101,0.45)]
+              cursor-pointer">
+              <span className="relative z-10">{slide.cta}</span>
             </button>
 
+            {/* Ghost */}
+            <button className="hidden sm:block
+              border border-[#C78665]/40 text-[#F4EDE6]/75 bg-transparent
+              px-7 py-[11px] rounded-full
+              text-[11px] tracking-[0.22em] uppercase
+              hover:border-[#C78665] hover:text-[#C78665]
+              transition-all duration-300 cursor-pointer">
+              {slide.ctaSub}
+            </button>
           </div>
         </div>
-      </div>
-    ))}
-  </Slider>
 
-  {/* Fix Slider Arrows Position */}
-  <style jsx>{`
-    .slick-prev,
-    .slick-next {
-      z-index: 20;
-    }
+        {/* ══════════════════════════════════════
+            SIDE THUMBNAIL RAIL — lg+
+        ══════════════════════════════════════ */}
+        <div className="hidden lg:flex flex-col gap-2.5 absolute right-6 top-1/2 -translate-y-1/2 z-20">
+          {slides.map((s, i) => (
+            <div key={i} onClick={() => goTo(i)} role="button"
+              className={`thumb-item w-[52px] h-[70px] rounded-lg overflow-hidden cursor-pointer
+                border relative transition-all duration-300
+                ${i === current
+                  ? "thumb-on border-[#C78665] opacity-100 scale-100"
+                  : "border-transparent opacity-45 scale-95"}`}>
+              <img src={s.img} alt="" className="w-full h-full object-cover" />
+              <div className={`absolute inset-0 transition-colors duration-300
+                ${i === current ? "bg-[#0D0705]/10" : "bg-[#0D0705]/40"}`} />
+            </div>
+          ))}
+        </div>
 
-    /* Mobile */
-    @media (max-width: 640px) {
-      .slick-prev {
-        left: 10px;
-      }
-      .slick-next {
-        right: 10px;
-      }
-    }
+        {/* ══════════════════════════════════════
+            FLOATING TAG — md+
+        ══════════════════════════════════════ */}
+        <div className="hidden md:flex flex-col items-center gap-2 absolute z-20"
+          style={{ right:"clamp(80px,9vw,155px)", top:"clamp(28px,8vh,72px)" }}>
+          <div className="w-11 h-11 rounded-full border border-[#C78665]/40 flex items-center justify-center">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="3" stroke="#C78665" strokeWidth="1"/>
+              <path d="M8 2v2M8 12v2M2 8h2M12 8h2" stroke="#C78665" strokeWidth="1" strokeLinecap="round"/>
+            </svg>
+          </div>
+          <span className="text-[#C78665] text-[9px] tracking-[0.28em] uppercase"
+            style={{ writingMode:"vertical-rl" }}>
+            {slide.tag}
+          </span>
+        </div>
 
-    /* Tablet */
-    @media (min-width: 641px) and (max-width: 1024px) {
-      .slick-prev {
-        left: 20px;
-      }
-      .slick-next {
-        right: 20px;
-      }
-    }
-  `}</style>
-</section>
+        {/* ══════════════════════════════════════
+            BOTTOM BAR
+        ══════════════════════════════════════ */}
+        <div className="absolute bottom-15 left-0 right-0 z-20
+          flex items-end justify-between gap-4
+          px-5 sm:px-10 md:px-16 lg:px-20 pb-6 sm:pb-8">
+
+          {/* Left: counter + strips */}
+          <div className="flex flex-col gap-2.5">
+            <div className="flex items-baseline gap-1.5">
+              <span className="h-serif text-[#C78665] leading-none"
+                style={{ fontSize:"2rem", fontWeight:300 }}>
+                {String(current + 1).padStart(2, "0")}
+              </span>
+              <span className="text-[#C78665]/35 text-[11px] tracking-wide">
+                / {String(slides.length).padStart(2, "0")}
+              </span>
+            </div>
+
+            {/* Progress strips */}
+            <div className="flex items-center gap-2">
+              {slides.map((_, i) => (
+                <div key={i} role="button" onClick={() => goTo(i)}
+                  className="relative h-[2px] bg-[#C78665]/20 rounded-full overflow-hidden cursor-pointer transition-all duration-300"
+                  style={{ width: i === current ? 72 : 28 }}>
+                  <div className="prog-fill absolute left-0 top-0 bottom-0 bg-[#C78665] rounded-full"
+                    style={{
+                      width: i === current ? `${progress}%` : i < current ? "100%" : "0%",
+                    }} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Center: dot nav (mobile only) */}
+          <div className="flex lg:hidden gap-2 items-center">
+            {slides.map((_, i) => (
+              <div key={i} onClick={() => goTo(i)} role="button"
+                className={`rounded-full cursor-pointer transition-all duration-400
+                  ${i === current
+                    ? "w-5 h-[5px] bg-[#C78665]"
+                    : "w-[5px] h-[5px] bg-[#C78665]/30"}`} />
+            ))}
+          </div>
+
+          {/* Right: arrow buttons (md+) */}
+          <div className="hidden md:flex gap-2.5">
+            {[{ label: "←", fn: goBack }, { label: "→", fn: next }].map(({ label, fn }) => (
+              <button key={label} onClick={fn}
+                className="arrow-btn w-11 h-11 rounded-full
+                  border border-[#C78665]/30 bg-[#C78665]/[0.05]
+                  text-[#F4EDE6]/70 text-base
+                  flex items-center justify-center
+                  backdrop-blur-sm cursor-pointer
+                  transition-all duration-250">
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+      </section>
 
 
       <section className="bg-[#140A06] text-[#F4EDE6] py-16 md:py-20 lg:py-28 px-4 sm:px-6">
