@@ -3,7 +3,7 @@ import {
   ShoppingCart, Heart, X, Plus, Minus, Star, ChevronDown,
   Search, Filter, Flame, Leaf, Award, Clock, Trash2, ShoppingBag, Check
 } from "lucide-react";
-
+import bannerImg from "../assets/images/orderbanner.png";
 /* ═══════════════════ DATA ═══════════════════ */
 const categories = ["All", "Starters", "Mains", "Pasta & Pizza", "Desserts", "Beverages"];
 
@@ -220,31 +220,38 @@ export default function OrderNow() {
       )}
 
       {/* ━━━━━━━━━━━━━━━━━ 1. HERO [DARK] ━━━━━━━━━━━━━━━━━ */}
-      <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden bg-[#0A0502]">
+      <section className="relative h-[800px] flex items-center justify-center overflow-hidden bg-[#f4efe9]">
         <img
-          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=85"
-          alt="Fine dining"
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0502]/60 via-[#0A0502]/40 to-[#0A0502]" />
+                        src={bannerImg}
+                        alt="Menu Banner"
+                        className="absolute inset-0 w-full h-[700px] object-cover"
+                      />
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-[#0A0502]/60 via-[#0A0502]/40 to-[#0A0502]" /> */}
+        {/* Corner accents */}
+        <div className="hidden md:block absolute top-40 left-90 w-16 h-16 border-t border-l border-[#C78665]/40 z-10" />
+        <div className="hidden md:block absolute bottom-50 right-80 w-16 h-16 border-b border-r border-[#C78665]/40 z-10" />
 
-        <div className="relative z-10 text-center px-6 max-w-3xl mx-auto anim-up">
-          <p className="font-josefin text-[#C78665] tracking-[.4em] text-[11px] uppercase mb-5">
+        <div className="relative z-10 w-full px-6 sm:px-10 lg:px-20 py-24 flex items-center justify-center">
+          <div className="w-full max-w-2xl text-center mx-auto">
+          <p className="font-josefin text-[#C78665] tracking-[.4em] text-[10px] sm:text-[11px] uppercase mb-5">
             Dine In · Takeaway · Delivery
           </p>
-          <h1 className="font-cormorant font-light text-[#F4EDE6] leading-tight mb-5"
-            style={{ fontSize: "clamp(44px,8vw,80px)" }}>
+         <h1
+              className="font-cormorant font-light text-[#F4EDE6] leading-[1.05] mb-6"
+              style={{ fontSize: "clamp(36px, 7vw, 70px)" }}
+            >
             Order <em className="text-[#C78665]">Your</em><br />World
           </h1>
-          <div className="mx-auto mb-6 h-px bg-[#C78665] max-w-[120px]" />
-          <p className="font-josefin text-[#C4A882] text-sm font-light leading-relaxed max-w-md mx-auto">
+          <div className="h-px bg-[#C78665] w-24 mb-6 mx-auto" />
+          <p className="font-josefin text-[#C4A882] text-sm font-light leading-relaxed max-w-md mb-10 mx-auto">
             Curated dishes from across the globe — crafted with love, delivered with elegance.
           </p>
+        </div>
         </div>
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━ 2. SEARCH + FILTERS [LIGHT] ━━━━━━━━━━━━━━━━━ */}
-      <section className="bg-[#F4EDE6] py-5 px-6 md:sticky md:top-[80px] z-30 shadow-md border-b border-[#E0D0C4]">
+      <section className="bg-[#F4EDE6] pb-5 px-6 md:sticky md:top-[80px] z-30 shadow-md border-b border-[#E0D0C4]">
         <div className="max-w-6xl mx-auto">
           {/* Search */}
           <div className="flex gap-3 mb-4 flex-wrap">
